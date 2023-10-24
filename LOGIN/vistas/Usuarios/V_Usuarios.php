@@ -1,5 +1,5 @@
 <?php
-    echo 'PATATAAAAAAAAAAAAAA';
+    echo 'Busqueda de usuarios: ';
     
 
 ?>
