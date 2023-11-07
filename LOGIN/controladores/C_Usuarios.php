@@ -10,16 +10,22 @@
             $this->modelo = new M_Usuarios();
         }
 
-        public function validarUsuario(){
-            $usuario='';
-            $pass='srfdvsvwrt';
-            extract($datos);
-            $valido='N';
-            if($usuario=='fran' && $pass== '123'){
+        public function validarUsuario($filtros){
+            //$usuario='';
+            //$pass='srfdvsvwrt';
+            //extract($datos);
+            /*if($usuario=='fran' && $pass== '123'){
                 $_SESSION['usuario']=$usuario;
                 $valido='S';
+            } */
+            $valido='N';
+            $usuarios=$this->modelo->buscarUsuarios($filtros);
+
+            if(!empty($usuarios)){
+                $valido='S';
+                $_SESSION['usuario']=$usuarios[0]['login'];
             }
-            echo $valido;
+            return $valido;
         }
 
         public function getVistaUsuarios(){
