@@ -52,5 +52,7 @@
             return $usuarios;
         }
 
+        public function crearUsuario($filtros=array()){
+        }
     }
 ?>

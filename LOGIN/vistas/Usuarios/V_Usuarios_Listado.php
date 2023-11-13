@@ -1,5 +1,5 @@
 <?php
-    $usuarios= $datos['usuarios'];
+    $usuarios = $datos['usuarios'];
 
     //$json = json_encode($usuarios);
     //echo $json;
@@ -12,8 +12,12 @@
         echo '<td>' . $fila['apellido_2'] . '</td>';
         echo '<td>' . $fila['nombre'] . '</td>';
         echo '<td>' . $fila['login'] . '</td>';
+        echo '<td><button class="editButton"
+        onclick="editarUsuario(' . $fila['id_Usuario'] . ')">Editar Usuario</button></td>';
         echo '</tr>';
     }
     echo '</table>';
-
 ?>
+
+
+

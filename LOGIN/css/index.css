@@ -50,3 +50,13 @@ button{
     cursor: pointer;
 }
 
+.editButton{
+    background-color: #2f0672;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
