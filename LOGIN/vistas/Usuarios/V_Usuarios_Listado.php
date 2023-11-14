@@ -13,7 +13,7 @@
         echo '<td>' . $fila['nombre'] . '</td>';
         echo '<td>' . $fila['login'] . '</td>';
         echo '<td><button class="editButton"
-        onclick="editarUsuario(' . $fila['id_Usuario'] . ')">Editar Usuario</button></td>';
+        onclick="MostrarEditarUsuario(' . $fila['id_Usuario'] . ')">Editar Usuario</button></td>';
         echo '</tr>';
     }
     echo '</table>';

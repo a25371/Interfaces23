@@ -43,5 +43,11 @@
             Vista::render('vistas/Usuarios/V_Usuarios_Crear.php', 
                             array('usuarios'=>$usuarios));
         }
+        public function editarUsuario($datosU=array()){
+            $usuarios=$this->modelo->editarUsuario($datosU);
+            //echo json_encode($usuarios);
+            Vista::render('vistas/Usuarios/V_Usuarios_Crear.php', 
+                            array('usuarios'=>$usuarios));
+        }
     }
 ?>

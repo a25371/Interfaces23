@@ -2,7 +2,7 @@
 
 ?>
 <hr>
-<form id="formularioCrear" name="formularioCrear" onkeydown="return event.key != 'Enter';">
+<form id="formularioEditar" name="formularioEditar" onkeydown="return event.key != 'Enter';">
     <div>
         <label for="n_texto">Nombre:</label>
             <input type="text" id="n_texto" name="n_texto">
@@ -28,7 +28,7 @@
             <input type="text" id="l_texto" name="l_texto">
         <label for="p_texto">Password:</label>
             <input type="text" id="p_texto" name="p_texto">
-        <button type="button" onclick="validarUsuarios()">Crear Usuario</button>
+        <button type="button" onclick="">Editar Usuario</button>
     </div>
     <span id="msj"></span>
 </form>
