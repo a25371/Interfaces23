@@ -37,8 +37,8 @@
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
         }
-        public function crearUsuario(){
-            $usuarios=$this->modelo->crearUsuario();
+        public function crearUsuario($datosU=array()){
+            $usuarios=$this->modelo->crearUsuario($datosU);
             //echo json_encode($usuarios);
             Vista::render('vistas/Usuarios/V_Usuarios_Crear.php', 
                             array('usuarios'=>$usuarios));

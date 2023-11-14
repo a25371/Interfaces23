@@ -18,7 +18,7 @@
         <option value="N">N</option>
     </select>
     <button type="button" onclick="buscarUsuarios()">Buscar</button>
-    <button type="button" onclick="crearUsuario()">Nuevo Usuario</button>
+    <button type="button" onclick="MostrarCrearUsuario()">Nuevo Usuario</button>
 </form>
 <div id="capaEditarUsuario"></div>
 <div id="capaResultadosBusqueda"></div>

@@ -19,8 +19,8 @@
             <input type="text" id="ma_texto" name="ma_texto">
         <label for="mo_texto">Movil:</label>
             <input type="text" id="mo_texto" name="mo_texto">
-        <label for="b_genero">Género:</label>
-            <select id="b_genero" name="b_genero">
+        <label for="g_texto">Género:</label>
+            <select id="g_texto" name="g_texto">
                 <option value="">None</option>
                 <option value="H">H</option>
                 <option value="M">M</option>
@@ -31,6 +31,7 @@
             <input type="text" id="l_texto" name="l_texto">
         <label for="p_texto">Password:</label>
             <input type="text" id="p_texto" name="p_texto">
-        <button type="button" onclick="()">Crear Usuario</button>
+        <button type="button" onclick="validarUsuarios()">Crear Usuario</button>
     </div>
+    <span id="msj"></span>
 </form>
