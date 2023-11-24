@@ -23,7 +23,7 @@ $datosUser = $datos['datosUser'];
         <input type="date" id="fecha_Alta" name="fecha_Alta" value="<?php echo $datosUser[0]['fecha_Alta']; ?>">
         
     </div>
-    <div class="crear-column">
+    <div class="crear-column" id="updateSelectors">
         <label for="g_texto">Género:</label>
         <select id="g_texto" name="g_texto">
             <option value=""  <?php if ($datosUser[0]['sexo'] == '') echo 'selected="selected"'; ?>>None</option>
@@ -38,7 +38,7 @@ $datosUser = $datos['datosUser'];
     </div>
     <div class="update-column">
     <input type="hidden" id="id_Usuario" name="id_Usuario" value="<?php echo $datosUser[0]['id_Usuario']; ?>">
-        <button type="button" id="button-update" onclick="updateUsuario()">Actualizar Usuario</button>
+        <button type="button" id="button-update" onclick="validarUpdateUsuarios()">Actualizar Usuario</button>
     </div>
     <span id="msj"></span>
 </form>

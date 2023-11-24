@@ -105,6 +105,7 @@
             $activo='';
             
             extract($datosU);
+
             $SQL = "UPDATE `usuarios` SET ";
             $SQL.= "`nombre`= '$n_texto'";
             $SQL.= ",`apellido_1`='$a1_texto'";
@@ -119,7 +120,14 @@
             $SQL.= "";
             $SQL.= "";
             echo $SQL.'<br>';
-            //$this->DAO->actualizar($SQL);
+
+            if($n_texto ==''){
+                echo "ERROR-UP001";
+            } else{
+                //$this->DAO->actualizar($SQL);
+            }
+            
+            $this->getUpdateUsuario($id_Usuario);
         }
     }
 ?>

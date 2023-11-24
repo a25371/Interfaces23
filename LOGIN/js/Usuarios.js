@@ -115,6 +115,33 @@ function getUpdateUsuario(id_Usuario) {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
+
+function validarUpdateUsuarios() {
+    const n_texto = document.getElementById("n_texto");
+    const a1_texto = document.getElementById("a1_texto");
+    let mensaje = '';
+    var n_check = 0;
+    var a1_check = 0;
+
+    if (n_texto.value == '') {
+        document.getElementById('n_texto').style.borderColor = 'red';
+        n_check = 1;
+    } else { n_texto.style.borderColor = ''; }
+
+    if (a1_texto.value == '') {
+        document.getElementById('a1_texto').style.borderColor = 'red';
+        a1_check = 1;
+    } else { a1_texto.style.borderColor = ''; }
+
+    if (n_check == 1 || a1_check == 1) {
+        mensaje = 'Los campos marcados en rojo no pueden estar vacios.';
+    } else {
+        // Enviar formulario
+        updateUsuario();
+    }
+    document.getElementById("msj").innerHTML = mensaje;
+}
+
 function updateUsuario() {
     let opciones = { method: "GET" };
     let parametros = "controlador=Usuarios&metodo=updateUsuario";
