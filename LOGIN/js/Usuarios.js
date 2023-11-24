@@ -18,7 +18,7 @@ function buscarUsuarios() {
         });
 }
 
-function validarUsuarios() {
+function validarInsertUsuarios() {
     const n_texto = document.getElementById("n_texto");
     const a1_texto = document.getElementById("a1_texto");
     const l_texto = document.getElementById("l_texto");
@@ -53,14 +53,14 @@ function validarUsuarios() {
         mensaje = 'Debes completar los campos marcados en rojo.';
     } else {
         // Enviar formulario
-        crearUsuario();
+        insertUsuario();
     }
     document.getElementById("msj").innerHTML = mensaje;
 }
 
-function crearUsuario() {
+function insertUsuario() {
     let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=crearUsuario";
+    let parametros = "controlador=Usuarios&metodo=insertUsuario";
     parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioCrear"))).toString();
     console.log(parametros);
     fetch("C_Ajax.php?" + parametros, opciones)
@@ -78,9 +78,9 @@ function crearUsuario() {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
-function MostrarCrearUsuario() {
+function getInsertUsuario() {
     let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=crearUsuario";
+    let parametros = "controlador=Usuarios&metodo=getInsertUsuario";
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {
@@ -96,9 +96,10 @@ function MostrarCrearUsuario() {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
-function MostrarEditarUsuario() {
+function getUpdateUsuario(id_Usuario) {
     let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=editarUsuario";
+    let parametros = "controlador=Usuarios&metodo=getUpdateUsuario";
+    parametros += "&id_Usuario=" + id_Usuario;
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {
             if (res.ok) {
@@ -114,10 +115,10 @@ function MostrarEditarUsuario() {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
-function editarUsuario() {
+function updateUsuario() {
     let opciones = { method: "GET" };
-    let parametros = "controlador=Usuarios&metodo=editarUsuario";
-    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioEditar"))).toString();
+    let parametros = "controlador=Usuarios&metodo=updateUsuario";
+    parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formularioUpdate"))).toString();
     console.log(parametros);
     fetch("C_Ajax.php?" + parametros, opciones)
         .then(res => {

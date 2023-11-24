@@ -37,16 +37,22 @@
             Vista::render('vistas/Usuarios/V_Usuarios_Listado.php', 
                             array('usuarios'=>$usuarios));
         }
-        public function crearUsuario($datosU=array()){
-            $usuarios=$this->modelo->crearUsuario($datosU);
-            //echo json_encode($usuarios);
-            Vista::render('vistas/Usuarios/V_Usuarios_Crear.php', 
+        public function getInsertUsuario(){
+            Vista::render('vistas/Usuarios/V_Usuarios_Insert.php');
+        }
+        public function insertUsuario($datosU=array()){
+            $usuarios=$this->modelo->insertUsuario($datosU);
+            Vista::render('vistas/Usuarios/V_Usuarios_Insert.php', 
                             array('usuarios'=>$usuarios));
         }
-        public function editarUsuario($datosU=array()){
-            $usuarios=$this->modelo->editarUsuario($datosU);
-            //echo json_encode($usuarios);
-            Vista::render('vistas/Usuarios/V_Usuarios_Crear.php', 
+        public function getUpdateUsuario($datosU=array()){
+            $datosUser=$this->modelo->getUpdateUsuario($datosU['id_Usuario']);
+            Vista::render('vistas/Usuarios/V_Usuarios_Update.php', 
+                            array('datosUser'=>$datosUser));
+        }
+        public function updateUsuario($datosU=array()){
+            $usuarios=$this->modelo->updateUsuario($datosU);
+            Vista::render('vistas/Usuarios/V_Usuarios_Update.php', 
                             array('usuarios'=>$usuarios));
         }
     }

@@ -52,7 +52,7 @@
             return $usuarios;
         }
 
-        public function crearUsuario($datosU=array()){
+        public function insertUsuario($datosU=array()){
             $n_texto='';
             $a1_texto='';
             $a2_texto='';
@@ -86,8 +86,40 @@
             $this->DAO->insertar($SQL);
         }
 
-        public function editarUsuario($datosU=array()){
+        public function getUpdateUsuario($ID){
+            $SQL="SELECT * FROM `usuarios` WHERE `id_Usuario` = $ID"; 
+            echo $SQL.'<br>';
+            $datosUser=$this->DAO->consultar($SQL);
+            return $datosUser;
+        }
+
+        public function updateUsuario($datosU=array()){
+            $id_Usuario='';
+            $n_texto='';
+            $a1_texto='';
+            $a2_texto='';
+            $g_texto='';
+            $fecha_alta='';
+            $ma_texto='';
+            $mo_texto='';
+            $activo='';
             
+            extract($datosU);
+            $SQL = "UPDATE `usuarios` SET ";
+            $SQL.= "`nombre`= '$n_texto'";
+            $SQL.= ",`apellido_1`='$a1_texto'";
+            $SQL.= ",`apellido_2`='$a2_texto'";
+            $SQL.= ",`sexo`='$g_texto'";
+            $SQL.= ",`fecha_Alta`='$fecha_alta'";
+            $SQL.= ",`mail`='$ma_texto'";
+            $SQL.= ",`movil`='$mo_texto'";
+            $SQL.= ",`activo`='$activo'";
+
+            $SQL.= "WHERE `id_Usuario`= '$id_Usuario'";
+            $SQL.= "";
+            $SQL.= "";
+            echo $SQL.'<br>';
+            //$this->DAO->actualizar($SQL);
         }
     }
 ?>
