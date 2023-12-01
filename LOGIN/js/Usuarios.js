@@ -10,7 +10,6 @@ function buscarUsuarios() {
             }
         })
         .then(vista => {
-            //console.log(vista);
             document.getElementById("capaResultadosBusqueda").innerHTML = vista;
         })
         .catch(err => {
@@ -71,7 +70,6 @@ function insertUsuario() {
             }
         })
         .then(vista => {
-            //console.log(vista);
             document.getElementById("capaEditarUsuario").innerHTML = vista;
         })
         .catch(err => {
@@ -89,7 +87,6 @@ function getInsertUsuario() {
             }
         })
         .then(vista => {
-            //console.log(vista);
             document.getElementById("capaEditarUsuario").innerHTML = vista;
         })
         .catch(err => {
@@ -108,7 +105,6 @@ function getUpdateUsuario(id_Usuario) {
             }
         })
         .then(vista => {
-            //console.log(vista);
             document.getElementById("capaEditarUsuario").innerHTML = vista;
         })
         .catch(err => {
@@ -138,6 +134,8 @@ function validarUpdateUsuarios() {
     } else {
         // Enviar formulario
         updateUsuario();
+        document.getElementById("capaEditarUsuario").style.display = "none";
+        alert("User successfully updated!");
     }
     document.getElementById("msj").innerHTML = mensaje;
 }
@@ -155,7 +153,6 @@ function updateUsuario() {
             }
         })
         .then(vista => {
-            //console.log(vista);
             document.getElementById("capaEditarUsuario").innerHTML = vista;
         })
         .catch(err => {

@@ -27,7 +27,7 @@
                 <div class="divLogotipo col-lg-2 col-md-2 col-sm-10">
                     <img src="img/Logo.png">
                 </div>
-                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block">Desarrollo de Interfaces</div>
+                <div class="divTituloApp col-lg-8 col-md-8 d-none d-md-block">Franciso J. Esteban Garcia</div>
                 <div class="divLog col-lg-2 col-md-2 col-sm-2">
                     <?php
                         if(isset($_SESSION['usuario'])){
