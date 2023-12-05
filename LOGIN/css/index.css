@@ -95,3 +95,9 @@ button{
     flex-wrap: wrap;
     justify-content: center;
 }
+
+#logerror {
+    color: red;       
+    font-size: large; 
+    text-align: center;
+}

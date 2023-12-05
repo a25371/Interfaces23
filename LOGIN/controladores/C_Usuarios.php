@@ -46,9 +46,14 @@
                             array('usuarios'=>$usuarios));
         }
         public function getUpdateUsuario($datosU=array()){
-            $datosUser=$this->modelo->getUpdateUsuario($datosU['id_Usuario']);
-            Vista::render('vistas/Usuarios/V_Usuarios_Update.php', 
-                            array('datosUser'=>$datosUser));
+            if(isset($_SESSION['usuario']) && $_SESSION['usuario']!=''){
+                $datosUser=$this->modelo->getUpdateUsuario($datosU['id_Usuario']);
+                Vista::render('vistas/Usuarios/V_Usuarios_Update.php', 
+                                array('datosUser'=>$datosUser));
+            }else{
+                echo '<div id="logerror">Error, debes tener una sesion iniciada para editar usuarios!!!</div>';
+            }
+            
         }
         public function updateUsuario($datosU=array()){
             $usuarios=$this->modelo->updateUsuario($datosU);

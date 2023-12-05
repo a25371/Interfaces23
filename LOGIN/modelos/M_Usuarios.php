@@ -52,6 +52,8 @@
             return $usuarios;
         }
 
+       
+
         public function insertUsuario($datosU=array()){
             $n_texto='';
             $a1_texto='';
@@ -88,7 +90,7 @@
 
         public function getUpdateUsuario($ID){
             $SQL="SELECT * FROM `usuarios` WHERE `id_Usuario` = $ID"; 
-            echo $SQL.'<br>';
+            //echo $SQL.'<br>';
             $datosUser=$this->DAO->consultar($SQL);
             return $datosUser;
         }
@@ -119,7 +121,7 @@
             $SQL.= "WHERE `id_Usuario`= '$id_Usuario'";
             $SQL.= "";
             $SQL.= "";
-            echo $SQL.'<br>';
+            //echo $SQL.'<br>';
 
             if($n_texto ==''){
                 echo "ERROR-UP001";
@@ -129,5 +131,6 @@
             
             $this->getUpdateUsuario($id_Usuario);
         }
+        
     }
 ?>
