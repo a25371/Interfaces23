@@ -20,6 +20,15 @@
         <script src="js/app.js"></script>
         <link rel="stylesheet" href="css/index.css">
         <link rel="stylesheet" href="css/menu.css">
+        <script>
+        function changePage(page) {
+            // Calculate the new starting index
+            var startIndex = page * 20;
+            
+            // Update the URL and reload the page
+            window.location.href = "?page=" + page;
+        }
+    </script>
     </head>
     <body>
         <section id="secEncabezadoPagina" class="container-fluid">
