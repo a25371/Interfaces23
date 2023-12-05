@@ -6,29 +6,33 @@ body {
     margin: 0px;
 }
 
-.divLogotipo{
+.divLogotipo {
     text-align: left;
 }
 
-.divLogotipo img{
+.divLogotipo img {
     height: 3em;
 }
-.divLog{
+
+.divLog {
     text-align: right;
 }
-.divLog img{
+
+.divLog img {
     height: 2em;
 }
-.divTituloApp{
+
+.divTituloApp {
     text-align: center;
     font-size: 1.5em;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     background-color: #0d46a3;
 }
 
-.dropdown-item:focus, .dropdown-item:hover {
+.dropdown-item:focus,
+.dropdown-item:hover {
     background-color: #1366ef;
 }
 
@@ -41,7 +45,7 @@ input {
     border-radius: 5px;
 }
 
-button{
+button {
     background-color: #0A367D;
     color: #FFFFFF;
     border: none;
@@ -50,7 +54,7 @@ button{
     cursor: pointer;
 }
 
-.editButton{
+.editButton {
     background-color: #2f0672;
     color: #FFFFFF;
     border: none;
@@ -60,25 +64,28 @@ button{
     margin-left: 40px;
 }
 
-#formularioBuscar{
+#formularioBuscar {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
-.buscar-column{
+
+.buscar-column {
     display: flex;
     flex-direction: column;
     padding-left: 1%;
     padding-right: 1%;
 }
-.formulario{
+
+.formulario {
     display: flex;
     flex-direction: row;
     margin-bottom: 2%;
     flex-wrap: wrap;
     flex-basis: auto;
 }
-.crear-column{
+
+.crear-column {
     display: flex;
     flex-direction: column;
     padding-left: 2%;
@@ -86,7 +93,8 @@ button{
     padding-bottom: 2%;
     flex-wrap: wrap;
 }
-.update-column{
+
+.update-column {
     display: flex;
     flex-direction: column;
     padding-left: 2%;
@@ -97,7 +105,7 @@ button{
 }
 
 #logerror {
-    color: red;       
-    font-size: large; 
+    color: red;
+    font-size: large;
     text-align: center;
 }

@@ -22,7 +22,7 @@ echo 'Busqueda de usuarios: ';
         </select>
     </div>
     <div class="buscar-column">
-    <button type="button" onclick="buscarUsuarios()">Buscar</button>
+        <button type="button" onclick="buscarUsuarios()">Buscar</button>
     </div>
     <div class="buscar-column">
         <button type="button" onclick="getInsertUsuario()">Nuevo Usuario</button>
