@@ -27,6 +27,7 @@ class M_Usuarios extends Modelo
             $usuario = addslashes($usuario);
             $pass = addslashes($pass);
             $SQL .= " AND login = '$usuario' AND pass = MD5('$pass') ";
+            echo $SQL.'<br>';
         }
 
         if ($b_texto != '') {
@@ -62,9 +63,9 @@ class M_Usuarios extends Modelo
         $g_texto = '';
         $l_texto = '';
         $p_texto = '';
-        $Upass = MD5($p_texto);
 
         extract($datosU);
+        $Upass = MD5($p_texto);
 
         $SQL = "INSERT INTO `usuarios`
             (`nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`)
@@ -117,12 +118,12 @@ class M_Usuarios extends Modelo
         $SQL .= "WHERE `id_Usuario`= '$id_Usuario'";
         $SQL .= "";
         $SQL .= "";
-        //echo $SQL.'<br>';
+        echo $SQL.'<br>';
 
-        if ($n_texto == '') {
+        if ($n_texto == '' || $a1_texto == '') {
             echo "ERROR-UP001";
         } else {
-            //$this->DAO->actualizar($SQL);
+            $this->DAO->actualizar($SQL);
         }
 
         $this->getUpdateUsuario($id_Usuario);
