@@ -18,6 +18,6 @@
     }
     echo '</table>';
 
+    include('V_Paginador.php');
 
-    
 ?>

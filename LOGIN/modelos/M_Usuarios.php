@@ -54,8 +54,6 @@ class M_Usuarios extends Modelo
         return $usuarios;
     }
 
-
-
     public function insertUsuario($datosU = array())
     {
         $n_texto = '';
