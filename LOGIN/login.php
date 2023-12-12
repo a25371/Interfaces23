@@ -22,12 +22,10 @@ if ($usuario == '' || $pass == '') {
         $mensa = 'Datos incorrectos';
     }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,13 +46,10 @@ if ($usuario == '' || $pass == '') {
         }
     </script>
 </head>
-
 <body>
     <div class="form-container">
         <form form id="formularioLogin" method="post" action="login.php">
-            <!-- Columnas Inputs -->
             <div class="inputs">
-                <!-- Columna 1 -->
                 <div class="input-column">
                     <div class="input-row">
                         <label for="usuario">User:</label>
@@ -75,5 +70,4 @@ if ($usuario == '' || $pass == '') {
     </div>
     </form>
 </body>
-
 </html>
