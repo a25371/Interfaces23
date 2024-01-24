@@ -4,12 +4,11 @@ $usuarios = $datos['usuarios'];
 //echo $json;
 
 echo '<table>';
-echo '<tr><th>Apellido 1</th><th>Apellido 2</th><th>Nombre</th><th>Login</th></tr>';
+echo '<tr><th>Nombre</th><th>Login</th></tr>';
 foreach ($usuarios as $fila) {
+    $nombreCompleto = $fila['nombre']. ' ' . $fila['apellido_1'] . ' ' . $fila['apellido_2'];
     echo '<tr>';
-    echo '<td>' . $fila['apellido_1'] . '</td>';
-    echo '<td>' . $fila['apellido_2'] . '</td>';
-    echo '<td>' . $fila['nombre'] . '</td>';
+    echo '<td>' . $nombreCompleto . '</td>';
     echo '<td>' . $fila['login'] . '</td>';
     echo '<td><button class="editButton" id="UpdateButton"
         onclick="getUpdateUsuario(' . $fila['id_Usuario'] . ')">Editar Usuario</button></td>';

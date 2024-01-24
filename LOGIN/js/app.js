@@ -23,3 +23,7 @@ function getVistaMenuSeleccionado(controlador, metodo) {
             console.log("Error al realizar la peticion.", err.message);
         });
 }
+
+function volverHome(){
+    window.location.href="index.php";
+}
