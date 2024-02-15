@@ -1,6 +1,7 @@
 <?php session_start();
 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
     //echo '<pre>'; print_r($_SESSION); echo '</pre>';
+    //echo $json = json_encode($_SESSION);
 } else {
     //header('Location: login.php');
 }
@@ -50,11 +51,12 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
         //$menu->getMenu();
         //echo '<br><hr><br>';
         $menu->getMenuBD();
-
+        if(isset($_SESSION['usuario']) && $_SESSION['usuario'] != ''){
+            $menu->getPermisos();   
+        }
     ?>
     <section id="secContenidoPagina" class="container-fluid">
     </section>
     <script src="librerias/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
