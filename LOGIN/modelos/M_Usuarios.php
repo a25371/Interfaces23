@@ -27,7 +27,7 @@ class M_Usuarios extends Modelo
             $usuario = addslashes($usuario);
             $pass = addslashes($pass);
             $SQL .= " AND login = '$usuario' AND pass = MD5('$pass') ";
-            echo $SQL.'<br>';
+            //echo $SQL.'<br>';
         }
 
         if ($b_texto != '') {
