@@ -1,18 +1,17 @@
 <?php session_start();
+require_once 'controladores/C_Menus.php';
+$menu=new C_Menus();
 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
-    //echo '<pre>'; print_r($_SESSION); echo '</pre>';
+    $menu->getPermisos(); 
+    $msjLogin = '';
 } else {
     //header('Location: login.php');
     //echo "SESION NO INICIADA";
+    $msjLogin = '<br><br><br><br><br> <p id="avisoLogin">PARA ACCESO COMPLETO, INICIA SESION</p>';
+    
 }
 //echo $json = json_encode($_SESSION);
 // https://es.cooltext.com/
-
-require_once 'controladores/C_Menus.php';
-        $menu=new C_Menus();
-        if(isset($_SESSION['usuario']) && $_SESSION['usuario'] != ''){
-            $menu->getPermisos();   
-        }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -54,10 +53,8 @@ require_once 'controladores/C_Menus.php';
     </section>
     <?php 
         $menu->getMenuBD();
-        if(empty($_SESSION)){
-            echo '<br><br><br><br><br>';
-            echo '<p id="avisoLogin">PARA ACCESO COMPLETO, INICIA SESION</p>';
-        }   
+            echo $msjLogin;
+         
     ?>
     <section id="secContenidoPagina" class="container-fluid">
     </section>
