@@ -4,27 +4,16 @@ require_once 'modelos/DAO.php';
 class M_Menus extends Modelo
 {
     public $DAO;
-
     public function __construct()
     {
         parent::__construct(); //ejecuta constructor del padre
         $this->DAO = new DAO();
     }
-
     public function getMenuData()
     {
-        $id_menu  = '';
-        $id_padre = '';
-        $orden    = '';
-        $titulo   = '';
-        $accion   = '';
-        $privado  = '';
-
         $SQL = "SELECT * FROM menu WHERE 1=1";
-
         //echo $SQL.'<br>';
         $MenuData = $this->DAO->consultar($SQL);
-
         $menu = array();
         foreach($MenuData as $fila){
             if($fila['ID_PADRE'] == 0){
@@ -35,7 +24,6 @@ class M_Menus extends Modelo
         }
         return $menu;
     }
-
     public function getPermisos()
     {
         $login = $_SESSION['usuario'];
@@ -47,8 +35,6 @@ class M_Menus extends Modelo
         INNER JOIN roles_usuarios ROU ON ROL.id_rol = ROU.id_rol
         INNER JOIN usuarios US ON ROU.id_usuario = US.id_usuario
         WHERE US.login = '$login';";
-        
-        
         //echo $SQL.'<br>';
         $PermsData = $this->DAO->consultar($SQL);
         $perms = array();

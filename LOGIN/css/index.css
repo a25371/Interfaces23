@@ -109,3 +109,9 @@ button {
     font-size: large;
     text-align: center;
 }
+
+#avisoLogin{
+    font-size: larger;
+    color: red;
+    padding-left: 40%;
+}

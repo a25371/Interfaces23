@@ -19,7 +19,7 @@ echo '</button>';
 echo '<div class="collapse navbar-collapse" id="navbarsExample04">';
 echo '<ul class="navbar-nav me-auto mb-2 mb-md-0">';
 foreach ($datos['MenuData'] as $fila) {
-    if(isset($_SESSION['perms'][$fila['ID_MENU']])){
+    if((isset($_SESSION['perms'][$fila['ID_MENU']]) || (empty($_SESSION) && $fila['PRIVADO'] == 0))){
         if (isset($fila['hijos'])) {
             echo '<li class="nav-item dropdown">';
             echo '<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">' . $fila['TITULO'] . '</a>';
@@ -34,7 +34,6 @@ foreach ($datos['MenuData'] as $fila) {
             echo '</li>';
         }
     }
-    
 }
 echo '</li>';
 echo '</ul>';
@@ -44,15 +43,15 @@ echo '</nav>';
 echo '</section>';
 
 // Dirty code para comprobar arrays anidados.
-/* foreach ($datos['MenuData'] as $menuItem) {
-    echo "TITULO: " . $menuItem['TITULO'] . '||';
-    if (isset($menuItem['hijos'])) {
-        echo '<br>';
-        foreach ($menuItem['hijos'] as $hijoItem) {
-            echo "------TITULO: " . $hijoItem['TITULO'];
-            echo '<br>';
-        }
-        echo 'FIN--' . $menuItem['TITULO'];
-        echo '<br>';
-    }
-}  */
+//  foreach ($datos['MenuData'] as $menuItem) {
+//     echo "TITULO: " . $menuItem['TITULO'] . '||' . "PRIVACIDAD: " . $menuItem['PRIVADO'];
+//     if (isset($menuItem['hijos'])) {
+//         echo '<br>';
+//         foreach ($menuItem['hijos'] as $hijoItem) {
+//             echo "------TITULO: " . $hijoItem['TITULO'];
+//             echo '<br>';
+//         }
+//         echo 'FIN--' . $menuItem['TITULO'];
+//         echo '<br>';
+//     }
+// }  
