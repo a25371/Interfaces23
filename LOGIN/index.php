@@ -1,14 +1,13 @@
 <?php session_start();
 require_once 'controladores/C_Menus.php';
-$menu=new C_Menus();
+$menu = new C_Menus();
 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
-    $menu->getPermisos(); 
+    $menu->getPermisos();
     $msjLogin = '';
 } else {
     //header('Location: login.php');
     //echo "SESION NO INICIADA";
-    $msjLogin = '<br><br><br><br><br> <p id="avisoLogin">PARA ACCESO COMPLETO, INICIA SESION</p>';
-    
+    $msjLogin = '<br><br><br><br><br><p id="avisoLogin">PARA ACCESO COMPLETO, INICIA SESION</p>';
 }
 //echo $json = json_encode($_SESSION);
 // https://es.cooltext.com/
@@ -20,7 +19,6 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="librerias/bootstrap-5.1.3-dist/css/bootstrap.min.css">
-    </link>
     <link rel="icon" type="image/x-icon" href="img/favicon.png">
     <title>Index</title>
     <script src="js/app.js"></script>
@@ -51,13 +49,13 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
             </div>
         </div>
     </section>
-    <?php 
-        $menu->getMenuBD();
-            echo $msjLogin;
-         
+    <?php
+    $menu->getMenuBD();
+    echo $msjLogin;
     ?>
     <section id="secContenidoPagina" class="container-fluid">
     </section>
     <script src="librerias/bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

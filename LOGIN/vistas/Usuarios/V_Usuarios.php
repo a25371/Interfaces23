@@ -24,9 +24,13 @@ echo 'Busqueda de usuarios: ';
     <div class="buscar-column">
         <button type="button" onclick="buscarUsuarios()">Buscar</button>
     </div>
-    <div class="buscar-column">
-        <button type="button" onclick="getInsertUsuario()">Nuevo Usuario</button>
-    </div>
+    <?php
+    if (isset($_SESSION['perms'][5][11])) {
+        echo '<div class="buscar-column">';
+        echo '<button type="button" onclick="getInsertUsuario()">Nuevo Usuario</button>';
+        echo '</div>';
+    }
+    ?>
 </form>
 <div id="capaEditarUsuario"></div>
 <div id="capaResultadosBusqueda"></div>

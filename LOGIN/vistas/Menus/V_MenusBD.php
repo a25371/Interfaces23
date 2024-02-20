@@ -19,7 +19,7 @@ echo '</button>';
 echo '<div class="collapse navbar-collapse" id="navbarsExample04">';
 echo '<ul class="navbar-nav me-auto mb-2 mb-md-0">';
 foreach ($datos['MenuData'] as $fila) {
-    if((isset($_SESSION['perms'][$fila['ID_MENU']]) || (empty($_SESSION) && $fila['PRIVADO'] == 0))){
+    if ((isset($_SESSION['perms'][$fila['ID_MENU']]) || (empty($_SESSION) && $fila['PRIVADO'] == 0))) {
         if (isset($fila['hijos'])) {
             echo '<li class="nav-item dropdown">';
             echo '<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">' . $fila['TITULO'] . '</a>';
