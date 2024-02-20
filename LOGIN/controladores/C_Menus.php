@@ -21,8 +21,4 @@ class C_Menus extends Controlador
         Vista::render('vistas/Menus/V_MenusBD.php',
                        array('MenuData'=>$MenuData));
     }
-    public function getPermisos()
-    {
-        $PermsData=$this->modelo->getPermisos();
-    }
 }

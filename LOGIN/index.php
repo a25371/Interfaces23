@@ -1,8 +1,8 @@
 <?php session_start();
-require_once 'controladores/C_Menus.php';
-$menu = new C_Menus();
+require_once 'controladores/C_Perms.php';
+$perms = new C_Perms();
 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
-    $menu->getPermisos();
+    $perms->getPermisos();
     $msjLogin = '';
 } else {
     //header('Location: login.php');
@@ -50,6 +50,8 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
         </div>
     </section>
     <?php
+    require_once 'controladores/C_Menus.php';
+    $menu = new C_Menus();
     $menu->getMenuBD();
     echo $msjLogin;
     ?>
