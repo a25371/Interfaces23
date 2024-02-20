@@ -12,6 +12,18 @@ class C_Perms extends Controlador
     }
     public function getPermisos()
     {
-        $PermsData=$this->modelo->getPermisos();
+        $PermsData = $this->modelo->getPermisos();
+    }
+    public function getVistaPerms()
+    {
+        Vista::render('vistas/Perms/V_Perms.php');
+    }
+    public function buscarPerms()
+    {
+        $perms = $this->modelo->buscarPerms();
+        Vista::render(
+            'vistas/Usuarios/V_Perms_Listado.php',
+            array('perms' => $perms)
+        );
     }
 }
