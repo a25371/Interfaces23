@@ -1,18 +1,20 @@
 <?php
+$perms = $datos['perms'];
 
-echo 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
-
+$json = json_encode($perms);
+        echo 'PERMISOS USUARIO: <br>';
+        echo $json;
 
 // Dirty code para comprobar arrays anidados.
-  foreach ($datos['MenuData'] as $menuItem) {
-     echo "TITULO: " . $menuItem['TITULO'] . '||' . "PRIVACIDAD: " . $menuItem['PRIVADO'];
-     if (isset($menuItem['hijos'])) {
-         echo '<br>';
-         foreach ($menuItem['hijos'] as $hijoItem) {
-             echo "------TITULO: " . $hijoItem['TITULO'];
-             echo '<br>';
-         }
-         echo 'FIN--' . $menuItem['TITULO'];
-         echo '<br>';
-     }
- }  
+  //foreach ($perms as $permsItem) {
+  //   echo "TITULO: " . $permsItem['PERMISO'];
+    //  if (isset($menuItem['hijos'])) {
+    //      echo '<br>';
+    //      foreach ($menuItem['hijos'] as $hijoItem) {
+    //          echo "------TITULO: " . $hijoItem['TITULO'];
+    //          echo '<br>';
+    //      }
+    //      echo 'FIN--' . $menuItem['TITULO'];
+    //      echo '<br>';
+    //  }
+ //}  

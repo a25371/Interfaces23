@@ -36,14 +36,15 @@ class M_Perms extends Modelo
     }
     public function buscarPerms()
     {
-        $SQL = "";
+        $SQL = "SELECT * FROM permisos ORDER BY ID_MENU ASC";
         $PermsData = $this->DAO->consultar($SQL);
         $perms = array();
+
         foreach ($PermsData as $permData) {
-            $id_permiso = $permData['id_permiso'];
-            $id_menu = $permData['id_menu'];
-            $permiso = $permData['permiso'];
-            $perms[$id_menu][$id_permiso] = "$permiso";
+             $id_permiso = $permData['ID_PERMISO'];
+             $id_menu = $permData['ID_MENU'];
+             $permiso = $permData['PERMISO'];
+             $perms[$id_menu][$id_permiso] = "$permiso";
         }
         return $perms;
     }
