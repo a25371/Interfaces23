@@ -35,17 +35,26 @@ class M_Perms extends Modelo
         // echo $json;
     }
     public function buscarPerms()
-    {
-        $SQL = "SELECT * FROM permisos ORDER BY ID_MENU ASC";
-        $PermsData = $this->DAO->consultar($SQL);
-        $perms = array();
+{
+    $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
+            FROM permisos PER
+            INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
+            WHERE 1=1;";
+    $PermsData = $this->DAO->consultar($SQL);
+    $perms = array();
 
-        foreach ($PermsData as $permData) {
-             $id_permiso = $permData['ID_PERMISO'];
-             $id_menu = $permData['ID_MENU'];
-             $permiso = $permData['PERMISO'];
-             $perms[$id_menu][$id_permiso] = "$permiso";
+    foreach ($PermsData as $fila) {
+        if ($fila['id_padre'] == 0) {
+            $perms[$fila['id_menu']] = $fila;
+        } else {
+            // Agrupamos hijos con el id_menu
+            $id_menu = $fila['id_menu'];
+            unset($fila['id_menu']); // Ya no necesitamos id_menu, a si que lo quitamos.
+            $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
         }
-        return $perms;
     }
+
+    return $perms;
+}
+
 }

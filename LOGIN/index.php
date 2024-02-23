@@ -24,6 +24,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
     <script src="js/app.js"></script>
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/perms.css">
 </head>
 
 <body>

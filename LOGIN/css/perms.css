@@ -1,0 +1,13 @@
+.CajaHijos{
+    border:1px solid black;
+    background-color: blue;
+    padding-left: 50px;
+}
+.CajaPadres{
+    border:1px solid black;
+    background-color: red;
+}
+.CajaMenu{
+    border:1px solid black;
+    background-color: green;
+}
