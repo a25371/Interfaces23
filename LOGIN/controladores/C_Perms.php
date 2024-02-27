@@ -26,4 +26,12 @@ class C_Perms extends Controlador
             array('perms' => $perms)
         );
     }
+    public function getInsertPerms()
+    {
+        Vista::render('vistas/Perms/V_Perms_Insert.php');
+    }
+    public function getUpdatePerms()
+    {
+        Vista::render('vistas/Perms/V_Perms_Update.php');
+    }
 }
