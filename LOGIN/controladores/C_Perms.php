@@ -34,4 +34,8 @@ class C_Perms extends Controlador
     {
         Vista::render('vistas/Perms/V_Perms_Update.php');
     }
+    public function getDeletePerms()
+    {
+        Vista::render('vistas/Perms/V_Perms_Delete.php');
+    }
 }

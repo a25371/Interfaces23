@@ -1,12 +1,32 @@
+#capaResultadosBusqueda{
+    display: flex;
+    flex-direction: row;
+    align-items:flex-start;
+}
+
+ul{
+    padding-left: 1rem;
+}
+
+#ListaPerms{
+    display: flex;
+    flex-direction: column;
+}
+
+.child{
+    flex: 1;
+}
+
 .Caja{
     border: 1px solid #3498db;
     padding: 10px;
     padding-left: 20px;
-    border-radius: 5px; /* Rounded corners */
-    margin: 5px; /* Add spacing between boxes */
-    /*display: flex;
-    justify-content: center;
-    align-items: center;*/
+    border-radius: 5px; 
+    margin: 5px; 
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
 .PermsBoton {
@@ -21,9 +41,42 @@
     height: 100%;
 }
 
+#patata{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
-#CajaHijos {}
+#CajaHijos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} 
 
-#CajaPadres {}
+#CajaPadres {
+    margin-left: -10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
-#CajaMenu {}
+#CajaBtn{
+    display: flex;
+    align-self: flex-start;
+    flex-basis: content;
+    justify-content: space-evenly;
+    padding-right: 10%;
+}
+
+#CajaMenu #CajaBtn {
+    padding-right: 5%;
+}
+
+#patata #CajaBtn {
+    padding-right: 7%;
+}
+
+#CajaHijos #CajaBtn {
+    padding-right: 5%;
+}
+
