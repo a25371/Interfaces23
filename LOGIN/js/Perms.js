@@ -38,7 +38,7 @@ function getUpdatePerms(id_permiso) {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
-function getInsertPerms() {
+function getInsertPerms(id_permiso) {
   let opciones = { method: "GET" };
   let parametros = "controlador=Perms&metodo=getInsertPerms";
   parametros += "&id_permiso=" + id_permiso;
