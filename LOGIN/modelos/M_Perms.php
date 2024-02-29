@@ -35,26 +35,28 @@ class M_Perms extends Modelo
         // echo $json;
     }
     public function buscarPerms()
-{
-    $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
+    {
+        $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
             FROM permisos PER
             INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
             WHERE 1=1;";
-    $PermsData = $this->DAO->consultar($SQL);
-    $perms = array();
+        $PermsData = $this->DAO->consultar($SQL);
+        $perms = array();
 
-    foreach ($PermsData as $fila) {
-        if ($fila['id_padre'] == 0) {
-            $perms[$fila['id_menu']] = $fila;
-        } else {
-            // Agrupamos hijos con el id_menu
-            $id_menu = $fila['id_menu'];
-            unset($fila['id_menu']); // Ya no necesitamos id_menu, a si que lo quitamos.
-            $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
+        foreach ($PermsData as $fila) {
+            if ($fila['id_padre'] == 0) {
+                $perms[$fila['id_menu']] = $fila;
+            } else {
+                // Agrupamos hijos con el id_menu
+                $id_menu = $fila['id_menu'];
+                unset($fila['id_menu']); // Ya no necesitamos id_menu, a si que lo quitamos.
+                $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
+            }
         }
+        return $perms;
     }
-
-    return $perms;
-}
-
+    public function updatePerms()
+    {
+        
+    }
 }

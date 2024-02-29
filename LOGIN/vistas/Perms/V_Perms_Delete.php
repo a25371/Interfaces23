@@ -1,3 +1,3 @@
 <?php
 
-echo "Nooooo no me borreeeees!! ;-;";
+echo "Seguro que quieres borrar $id_permiso? ;-;";
