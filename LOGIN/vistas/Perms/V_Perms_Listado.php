@@ -60,6 +60,4 @@ foreach ($perms as $id_menu => $permisos) {
         // echo '<td><button class="PermsBoton" onclick="getInsertMenu()"><img class="PermsImagen" src="img/create.png"></button></td>';
 }
 echo "</div>";
-echo "<div class='child' id='Opciones'>";
-echo "<div id='capaPerms'></div>";
-echo "</div>";
+echo "<div class='child' id='OpcionesPerms'></div>";

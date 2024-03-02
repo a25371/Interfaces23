@@ -1,0 +1,46 @@
+ID-TITULO-IDPADRE-ORDEN
+1 Home		0	1
+2 Link		0	2
+3 Productos	0	3
+4 CRUDs		0	4
+5 Usuarios	4	1
+6 Pedidos	4	2
+7 Something	4	3
+8 Ofertas	9	2
+9 Ayuda		0	1
+
+CREATE TABLE MENU(
+ID_MENU  INT(5),
+ID_PADRE INT(5),
+ORDEN 	 INT(5),
+TITULO 	 VARCHAR(50),
+ACCION 	 VARCHAR(100),
+PRIVADO  BOOLEAN,
+
+CONSTRAINT PK_MENU PRIMARY KEY (ID_MENU)
+);
+
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (1,0,1,'Home','volverHome()',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (2,0,2,'Link','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (3,0,3,'Productos','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (4,0,4,'CRUDs','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (5,4,1,'Usuarios','getVistaMenuSeleccionado('Usuarios', 'getVistaUsuarios')',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (6,4,2,'Pedidos','getVistaMenuSeleccionado('Pedidos', 'getVistaPedidos')',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (7,4,3,'Something Else','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (8,0,20,'Ayuda','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (9,8,1,'Ofertas','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (10,8,2,'Mantenimiento','',False);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (11,0,10,'Seguridad','',True);
+INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
+VALUES (12,11,1,'Mtto. Menu y permisos','getVistaMenuSeleccionado('Perms', 'getVistaPerms')',True);

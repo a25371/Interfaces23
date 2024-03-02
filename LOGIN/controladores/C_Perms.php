@@ -26,9 +26,13 @@ class C_Perms extends Controlador
             array('perms' => $perms)
         );
     }
-    public function getInsertPerms()
+    public function getInsertPerms($getInsertData = array())
     {
-        Vista::render('vistas/Perms/V_Perms_Insert.php');
+        $getInsertData = $this->modelo->getInsertPerms($getInsertData);
+        Vista::render(
+            'vistas/Perms/V_Perms_Insert.php',
+            array('getInsertData' => $getInsertData)
+        );
     }
     public function getUpdatePerms()
     {
@@ -37,5 +41,13 @@ class C_Perms extends Controlador
     public function getDeletePerms()
     {
         Vista::render('vistas/Perms/V_Perms_Delete.php');
+    }
+    public function insertPerms($insertData = array())
+    {
+        $insertData = $this->modelo->insertPerms($insertData);
+        Vista::render(
+            'vistas/Perms/V_Perms_Insert.php',
+            array('insertData' => $insertData)
+        );
     }
 }

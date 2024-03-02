@@ -53,10 +53,26 @@ class M_Perms extends Modelo
                 $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
             }
         }
+
+        
+        $json = json_encode($perms);
+        //echo $json;
         return $perms;
     }
-    public function updatePerms()
+    public function getInsertPerms($id_menu){
+        extract($id_menu);
+        $SQL= "SELECT ID_MENU, TITULO FROM menu WHERE ID_MENU = $id_menu";
+        $GetInsertData = $this->DAO->consultar($SQL);
+        return $GetInsertData;
+    }
+    public function insertPerms($insertData = array())
     {
-        
+        $id_Menu= "";
+        $FP_titulo= "";
+
+        extract($insertData);
+        $SQL= "INSERT INTO permisos(ID_MENU, PERMISO) VALUES ($id_Menu , '$FP_titulo');";
+        echo "<script>console.log('$SQL');</script>";
+        $this->DAO->insertar($SQL);
     }
 }

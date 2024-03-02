@@ -1,0 +1,17 @@
+id_Usuario int(11)
+nombre	   varchar(40)
+apellido_1 varchar(40)
+apellido_2 varchar(40)
+sexo 	   char(1)
+fecha_Alta date
+mail	   varchar(100)
+movil	   varchar(15)
+login	   varchar(40)
+pass	   varchar(32)
+activo	   char(1)
+
+Fields Crear:
+Todos menos id y activo (asumimos que un usuario nuevo siempre sera activo).
+nombre, apellido_1, login, pass deben ser Obligatorios.
+pass debe guardarse encriptado con MD5
+fecha_alta debe ser la fecha actual.

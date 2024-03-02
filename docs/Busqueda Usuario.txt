@@ -1,0 +1,16 @@
+Ordenar por:
+	-Fecha de alta
+	-Nombre
+	-Apellido
+	-Sexo
+	-ID
+
+Selects:
+	-Sexo
+	-Activo o no.
+
+Busquedas (input del usuario):
+	-Nombre.
+	-Apellido.
+	-Movil.
+	-Email

@@ -1,0 +1,4 @@
+SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre
+        FROM permisos PER
+        INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
+	WHERE 1=1;

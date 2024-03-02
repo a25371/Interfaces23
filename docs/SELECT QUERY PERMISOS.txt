@@ -1,0 +1,28 @@
+SELECT PER.id_permiso
+FROM permisos PER
+INNER JOIN permisos_roles PR ON PER.id_permiso = PR.id_permiso
+INNER JOIN roles ROL ON PR.id_rol = ROL.id_rol
+INNER JOIN roles_usuarios ROU ON ROL.id_rol = ROU.id_rol
+INNER JOIN usuarios US ON ROU.id_usuario = US.id_usuario
+WHERE US.login = '$login';
+
+
+
+
+-------------------------------------------------------------------------------
+------------------------------------NO USAR------------------------------------
+SELECT PER.id_permiso, PER.id_menu
+        FROM permisos PER
+        WHERE PER.id_permiso IN (
+            SELECT PR.id_permiso
+            FROM permisos_roles PR
+            WHERE PR.id_rol = (
+                SELECT ROL.id_rol
+                FROM roles ROL
+                WHERE ROL.id_rol = (
+                    SELECT ROU.id_rol
+                    FROM roles_usuarios ROU
+                    WHERE ROU.id_usuario = (
+                        SELECT US.id_usuario
+                        FROM usuarios US
+                        WHERE US.login = '$login' ))));
