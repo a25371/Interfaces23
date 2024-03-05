@@ -45,18 +45,26 @@ class M_Perms extends Modelo
 
         foreach ($PermsData as $fila) {
             if ($fila['id_padre'] == 0) {
-                $perms[$fila['id_menu']] = $fila;
+                // If the key already exists, append the new data to the existing array
+                if (!isset($perms[$fila['id_menu']])) {
+                    $perms[$fila['id_menu']] = array();
+                }
+                $perms[$fila['id_menu']][] = $fila;
             } else {
                 // Agrupamos hijos con el id_menu
                 $id_menu = $fila['id_menu'];
                 unset($fila['id_menu']); // Ya no necesitamos id_menu, a si que lo quitamos.
-                $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
+                if (!isset($perms[$fila['id_padre']]['hijos'][$id_menu])) {
+                    $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
+                } else {
+                    // If the key already exists, append the new data to the existing array
+                    $perms[$fila['id_padre']]['hijos'][$id_menu][] = $fila;
+                }
             }
         }
 
-        
-        $json = json_encode($perms);
-        //echo $json;
+        // $json = json_encode($perms);
+        // echo $json;
         return $perms;
     }
     public function getInsertPerms($id_menu){

@@ -7,28 +7,33 @@ $perms = $datos['perms'];
 
 // Ordenamos por 'orden' para que copie el menu.
 usort($perms, function ($a, $b) {
-        return $a['orden'] - $b['orden'];
+        return $a[0]['orden'] - $b[0]['orden'];
 });
 
 echo "<div class='child' id='ListaPerms'>";
 foreach ($perms as $id_menu => $permisos) {
         echo "<div class='Caja' id= 'CajaMenu'>";
         echo "<div id= 'patata'>";
-        echo "<p>{$permisos['titulo']} || con ID: {$permisos['id_menu']}</p>";
-
+        echo "<p>{$permisos[0]['titulo']} || con ID: {$permisos[0]['id_menu']}</p>";
         // Botones del padre (ID menu)
         echo "<div id= 'CajaBtn'>"; //Creamos nuevo permiso para el menu
-        echo '<td><button class="PermsBoton" onclick="getInsertPerms(' . $permisos['id_menu'] . ')"><img class="PermsImagen" src="img/create.png"></button></td>';
+        echo '<td><button class="PermsBoton" onclick="getInsertPerms(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/create.png"></button></td>';
         echo "</div>";
         echo "</div>";
         // Datos del padre
-        echo "<div class='Caja' id= 'CajaPadres'>";
-        echo "<p>Permiso: {$permisos['permiso']}</p>";
-        echo "<div id= 'CajaBtn'>"; // Editamos o eliminamos un permiso
-        echo '<td><button class="PermsBoton" onclick="getUpdatePerms(' . $permisos['id_permiso'] . ')"><img class="PermsImagen" src="img/edit.png"></button></td>';
-        echo '<td><button class="PermsBoton" onclick="getDeletePerms(' . $permisos['id_permiso'] . ')"><img class="PermsImagen" src="img/delete.png"></button></td>';
-        echo "</div>";
-        echo "</div>"; // Cerrar CajaPadre
+        foreach ($permisos as $permiso) {
+                // Existe la clave 'permiso' en el array $permiso?
+                if (!isset($permiso['permiso'])) {
+                        continue; // Si no existe, es un hijo, no lo mostramos.
+                }
+                echo "<div class='Caja' id='CajaPadres'>";
+                echo "<p>Permiso: {$permiso['permiso']}</p>";
+                echo "<div id='CajaBtn'>"; // Editamos o eliminamos un permiso
+                echo '<td><button class="PermsBoton" onclick="getUpdatePerms(' . $permiso['id_permiso'] . ')"><img class="PermsImagen" src="img/edit.png"></button></td>';
+                echo '<td><button class="PermsBoton" onclick="getDeletePerms(' . $permiso['id_permiso'] . ')"><img class="PermsImagen" src="img/delete.png"></button></td>';
+                echo "</div>";
+                echo "</div>"; // Cerrar CajaPadre
+        }
         // Tenemos hijos?
         if (isset($permisos['hijos'])) {
                 foreach ($permisos['hijos'] as $id_menu_hijo => $hijos) {

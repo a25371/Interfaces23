@@ -29,9 +29,9 @@ VALUES (3,0,3,'Productos','',False);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
 VALUES (4,0,4,'CRUDs','',False);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
-VALUES (5,4,1,'Usuarios','getVistaMenuSeleccionado('Usuarios', 'getVistaUsuarios')',False);
+VALUES (5,4,1,'Usuarios',"getVistaMenuSeleccionado('Usuarios', 'getVistaUsuarios')",False);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
-VALUES (6,4,2,'Pedidos','getVistaMenuSeleccionado('Pedidos', 'getVistaPedidos')',False);
+VALUES (6,4,2,'Pedidos',"getVistaMenuSeleccionado('Pedidos', 'getVistaPedidos')",False);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
 VALUES (7,4,3,'Something Else','',False);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
@@ -43,4 +43,4 @@ VALUES (10,8,2,'Mantenimiento','',False);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
 VALUES (11,0,10,'Seguridad','',True);
 INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) 
-VALUES (12,11,1,'Mtto. Menu y permisos','getVistaMenuSeleccionado('Perms', 'getVistaPerms')',True);
+VALUES (12,11,1,'Mtto. Menu y permisos',"getVistaMenuSeleccionado('Perms', 'getVistaPerms')",True);

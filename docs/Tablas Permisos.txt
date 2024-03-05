@@ -38,7 +38,7 @@ CONSTRAINT FK_RU_ROLES 	  FOREIGN KEY (ID_ROL) 	   REFERENCES ROLES   (ID_ROL),
 CONSTRAINT FK_RU_USUARIOS FOREIGN KEY (ID_USUARIO) REFERENCES USUARIOS (ID_USUARIO)
 );
 
-
+# -----------------INSERT PERMISOS-----------------
 
 INSERT INTO permisos(ID_MENU, PERMISO) VALUES (2 , 'Ver Link');
 INSERT INTO permisos(ID_MENU, PERMISO) VALUES (3 , 'Ver Productos');
@@ -52,18 +52,17 @@ INSERT INTO permisos(ID_MENU, PERMISO) VALUES (10 , 'Ver Mantenimiento');
 INSERT INTO permisos(ID_MENU, PERMISO) VALUES (1 , 'Ver Home');
 INSERT INTO permisos(ID_MENU, PERMISO) VALUES (5 , 'Crear nuevo usuario');
 INSERT INTO permisos(ID_MENU, PERMISO) VALUES (5 , 'Update usuario');
-INSERT INTO permisos(ID_MENU, PERMISO) VALUES ( 11, 'Ver Seguridad');
-INSERT INTO permisos(ID_MENU, PERMISO) VALUES ( 12, 'Ver Mtto. Perms');
+INSERT INTO permisos(ID_MENU, PERMISO) VALUES (11, 'Ver Seguridad');
+INSERT INTO permisos(ID_MENU, PERMISO) VALUES (12, 'Ver Mtto. Perms');
 
-INSERT INTO permisos(ID_MENU, PERMISO) VALUES ( , '');
-
-
+# -----------------INSERT ROLES-----------------
 
 INSERT INTO roles(ROL) VALUES ('Visitor');
 INSERT INTO roles(ROL) VALUES ('User');
 INSERT INTO roles(ROL) VALUES ('Admin');
 INSERT INTO roles(ROL) VALUES ('Maintainer');
 
+# -----------------INSERT PERMISOS_ROLES-----------------
 
 INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES (1,1);
 INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES (1,2);
@@ -105,19 +104,15 @@ INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES (4,10);
 INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES (4,13);
 INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES (4,14);
 
+# -----------------INSERT ROLES_USUARIOS-----------------
+
+INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES ('10', 'Fran', 'Esteban', 'Garcia', '', '2024-03-02', 'Fran', '', 'Fran', '0f4bb8455d27349b8273109b66a847f3', 'S'); 
+INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES ('519', 'Maintainer', 'Maint', 'Maint', '', '2024-03-02', 'Maint', '', 'Maint', 'b8d5805f6c4795a8480ee9614fbb5008', 'S'); 
+INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES ('520', 'User', 'User', 'User', '', '2024-03-02', 'User', '', 'User', '8f9bfe9d1345237cb3b2b205864da075', 'S');
+INSERT INTO `usuarios` (`id_Usuario`, `nombre`, `apellido_1`, `apellido_2`, `sexo`, `fecha_Alta`, `mail`, `movil`, `login`, `pass`, `activo`) VALUES ('521', 'Visitor', 'Visitor', 'Visitor', '', '2024-03-02', 'Visitor', '', 'Visitor', 'c9fb01bb38360f1f3f595b7ccf3d3abe', 'S');
+
+
+INSERT INTO ROLES_USUARIOS(ID_USUARIO, ID_ROL) VALUES (521,1);
+INSERT INTO ROLES_USUARIOS(ID_USUARIO, ID_ROL) VALUES (520,2);
 INSERT INTO ROLES_USUARIOS(ID_USUARIO, ID_ROL) VALUES (10,3);
 INSERT INTO ROLES_USUARIOS(ID_USUARIO, ID_ROL) VALUES (519,4);
-INSERT INTO ROLES_USUARIOS(ID_USUARIO, ID_ROL) VALUES (520,2);
-INSERT INTO ROLES_USUARIOS(ID_USUARIO, ID_ROL) VALUES (521,1);
-
-
-INSERT INTO PERMISOS_USUARIOS(ID_USUARIO, ID_PERMISO) VALUES (,);
-
-
-
-
-
-
-
-
-
