@@ -95,9 +95,28 @@ class M_Perms extends Modelo
     {
         extract($id_permiso);
         $SQL = "DELETE FROM permisos WHERE ID_Permiso = $id_permiso";
-        $GetInsertData = $this->DAO->borrar($SQL);
+        $this->DAO->borrar($SQL);
     }
     public function getUpdatePerms($id_permiso)
     {
+        extract($id_permiso);
+        $SQL = "SELECT PER.id_permiso, PER.permiso, MEN.titulo
+        FROM permisos PER
+        INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
+        WHERE PER.id_permiso = $id_permiso;";
+        $getUpdateData = $this->DAO->consultar($SQL);
+        return $getUpdateData;
+    }
+    public function updatePerms($updateData = array()){
+
+        $id_permiso = "";
+        $FP_titulo = "";
+
+        extract($updateData);
+        $SQL = "UPDATE permisos
+        SET permiso = '$FP_titulo'
+        WHERE id_permiso = $id_permiso;";
+        $this->DAO->actualizar($SQL);
+        echo "<script>console.log('$SQL');</script>";
     }
 }

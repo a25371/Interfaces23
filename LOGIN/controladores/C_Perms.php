@@ -54,8 +54,13 @@ class C_Perms extends Controlador
             array('getUpdateData' => $getUpdateData)
         );
     }
-    public function updatePerms()
+    public function updatePerms($updateData = array())
     {
+        $updateData = $this->modelo->updatePerms($updateData);
+        Vista::render(
+            'vistas/Perms/V_Perms_Update.php',
+            array('updateData' => $updateData)
+        );
     }
 
     // DELETE PERMS

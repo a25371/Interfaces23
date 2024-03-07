@@ -86,19 +86,23 @@ function getUpdatePerms(id_permiso) {
 function updatePerms() {
   let opciones = { method: "GET" };
   let parametros = "controlador=Perms&metodo=updatePerms";
-  parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formUpdatePerm"))).toString();
+  parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formPermsUpdate"))).toString();
+  console.log(parametros);
   fetch("C_Ajax.php?" + parametros, opciones)
     .then((res) => {
       if (res.ok) {
         console.log("Respuesta ok");
-        return res.text();
+        return "El permiso se ha modificado correctamente."; // Return a success message
+      } else {
+        throw new Error("Error en la modificación de permiso!");
       }
     })
-    .then((vista) => {
-      document.getElementById("OpcionesPerms").innerHTML = vista;
+    .then((message) => {
+      document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
+      document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
     });
 }
 

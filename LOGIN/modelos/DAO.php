@@ -32,7 +32,6 @@
             $this->conexion->query($SQL, MYSQLI_USE_RESULT);
             if($this->conexion->connect_errno){
                 die('Error insertar BD: '.$SQL);
-                return '';
             }else{
                 return $this->conexion->insert_id;
             }
@@ -42,7 +41,6 @@
             $this->conexion->query($SQL, MYSQLI_USE_RESULT);
             if($this->conexion->connect_errno){
                 die('Error update BD: '.$SQL);
-                return '';
             }else{
                 return $this->conexion->affected_rows;
             }
@@ -53,4 +51,3 @@
 			return $this->conexion->affected_rows;
 		}
     }
-?>
