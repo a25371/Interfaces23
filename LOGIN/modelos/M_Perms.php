@@ -67,20 +67,37 @@ class M_Perms extends Modelo
         // echo $json;
         return $perms;
     }
-    public function getInsertPerms($id_menu){
+    public function getInsertPerms($id_menu)
+    {
         extract($id_menu);
-        $SQL= "SELECT ID_MENU, TITULO FROM menu WHERE ID_MENU = $id_menu";
+        $SQL = "SELECT ID_MENU, TITULO FROM menu WHERE ID_MENU = $id_menu";
         $GetInsertData = $this->DAO->consultar($SQL);
         return $GetInsertData;
     }
     public function insertPerms($insertData = array())
     {
-        $id_Menu= "";
-        $FP_titulo= "";
+        $id_Menu = "";
+        $FP_titulo = "";
 
         extract($insertData);
-        $SQL= "INSERT INTO permisos(ID_MENU, PERMISO) VALUES ($id_Menu , '$FP_titulo');";
+        $SQL = "INSERT INTO permisos(ID_MENU, PERMISO) VALUES ($id_Menu , '$FP_titulo');";
         echo "<script>console.log('$SQL');</script>";
         $this->DAO->insertar($SQL);
+    }
+    public function getDeletePerms($id_permiso)
+    {
+        extract($id_permiso);
+        $SQL = "SELECT ID_PERMISO, PERMISO FROM permisos WHERE ID_Permiso = $id_permiso";
+        $GetInsertData = $this->DAO->consultar($SQL);
+        return $GetInsertData;
+    }
+    public function deletePerms($id_permiso)
+    {
+        extract($id_permiso);
+        $SQL = "DELETE FROM permisos WHERE ID_Permiso = $id_permiso";
+        $GetInsertData = $this->DAO->borrar($SQL);
+    }
+    public function getUpdatePerms($id_permiso)
+    {
     }
 }

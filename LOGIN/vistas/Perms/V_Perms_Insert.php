@@ -14,5 +14,4 @@ $getInsertData = $datos['getInsertData'];
         <input type="text" id="FP_titulo" name="FP_titulo">
         <button type="button" id="button-crear" onclick="insertPerms()">Crear Permiso</button>
     </div>
-    <span id="msj"></span>
 </form> 

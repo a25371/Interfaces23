@@ -80,3 +80,21 @@ ul{
     padding-right: 5%;
 }
 
+#button-Dconfirm {
+    background-color: #149e08;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+#button-Dcancel {
+    background-color: #a31906;
+    color: #FFFFFF;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 40px;
+}

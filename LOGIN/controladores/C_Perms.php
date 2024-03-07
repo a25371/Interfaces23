@@ -26,6 +26,8 @@ class C_Perms extends Controlador
             array('perms' => $perms)
         );
     }
+
+    //INSERT PERMS
     public function getInsertPerms($getInsertData = array())
     {
         $getInsertData = $this->modelo->getInsertPerms($getInsertData);
@@ -34,14 +36,6 @@ class C_Perms extends Controlador
             array('getInsertData' => $getInsertData)
         );
     }
-    public function getUpdatePerms()
-    {
-        Vista::render('vistas/Perms/V_Perms_Update.php');
-    }
-    public function getDeletePerms()
-    {
-        Vista::render('vistas/Perms/V_Perms_Delete.php');
-    }
     public function insertPerms($insertData = array())
     {
         $insertData = $this->modelo->insertPerms($insertData);
@@ -49,5 +43,34 @@ class C_Perms extends Controlador
             'vistas/Perms/V_Perms_Insert.php',
             array('insertData' => $insertData)
         );
+    }
+
+    //UPDATE PERMS
+    public function getUpdatePerms($getUpdateData = array())
+    {
+        $getUpdateData = $this->modelo->getUpdatePerms($getUpdateData);
+        Vista::render(
+            'vistas/Perms/V_Perms_Update.php',
+            array('getUpdateData' => $getUpdateData)
+        );
+    }
+    public function updatePerms()
+    {
+    }
+
+    // DELETE PERMS
+    public function getDeletePerms($getDeleteData = array())
+    {
+        $getDeleteData = $this->modelo->getDeletePerms($getDeleteData);
+        Vista::render(
+            'vistas/Perms/V_Perms_Delete.php',
+            array('getDeleteData' => $getDeleteData)
+        );
+    }
+    public function deletePerms($id_permiso)
+    {
+        $id_permiso = $this->modelo->deletePerms($id_permiso);
+        Vista::render(
+            'vistas/Perms/V_Perms_Delete.php');
     }
 }
