@@ -24,6 +24,7 @@ class M_Menus extends Modelo
         }
         return $menu;
     }
+    public function getMenuOptions(){}
     public function insertMenu(){
         
     }

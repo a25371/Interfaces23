@@ -57,12 +57,12 @@ foreach ($perms as $id_menu => $permisos) {
                                 echo "</div>";
                                 echo "</div>";
                         }
+                        echo '<td><button class="PermsBoton" onclick="getmenuOptions()"><img class="PermsImagen" src="img/option.png"></button></td>';
                         echo "</div>"; // Cerrar CajaMenu para el hijo
                 }
         }
+        echo '<td><button class="PermsBoton" onclick="getmenuOptions(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/option.png"></button></td>';
         echo "</div>"; // Cerrar CajaMenu para el padre
-        // Creacion mas menus, TODO mas tarde
-        // echo '<td><button class="PermsBoton" onclick="getInsertMenu()"><img class="PermsImagen" src="img/create.png"></button></td>';
 }
 echo "</div>";
 echo "<div class='child' id='OpcionesPerms'></div>";

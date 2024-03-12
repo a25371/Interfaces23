@@ -148,3 +148,35 @@ function deletePerms(id_permiso) {
       document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
     });
 }
+
+
+// CODIGO MENUS
+
+function getmenuOptions(id_menu) {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=getMenuOptions";
+  parametros += "&id_menu=" + id_menu;
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return res.text();
+      }
+    })
+    .then((vista) => {
+      document.getElementById("OpcionesPerms").innerHTML = vista;
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+    });
+}
+
+// INSERT MENU
+function getInsertMenu() {}
+function insertMenu() {}
+// UPDATE MENU
+function getUpdateMenu() {}
+function updateMenu() {}
+// DELETE MENU
+function getDeleteMenu() {}
+function deleteMenu() {}
