@@ -176,7 +176,29 @@ function getInsertMenu(id_menu) {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
-function insertMenu() {}
+function insertMenu() {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=insertMenu";
+  parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formMenuInsert"))).toString();
+  console.log(parametros);
+  
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return "El Menu se a creado correctamente."; // Return a success message
+      } else {
+        throw new Error("Error en la creación de menu!");
+      }
+    })
+    .then((message) => {
+      document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+      document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
+    });
+}
 
 // INSERT SUBMENU 
 function getInsertSubMenu(id_menu) {
