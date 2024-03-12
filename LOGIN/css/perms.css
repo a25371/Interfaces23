@@ -29,6 +29,8 @@ ul{
     justify-content: flex-start;
 }
 
+
+
 .PermsBoton {
     width: 25px;
     height: 25px;
@@ -51,6 +53,7 @@ ul{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: rgb(52, 152, 219, 0.2);
 } 
 
 #CajaPadres {
@@ -58,6 +61,7 @@ ul{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background-color: rgb(52, 152, 219, 0.2);
 }
 
 #CajaBtn{

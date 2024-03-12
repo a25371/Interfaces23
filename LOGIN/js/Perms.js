@@ -57,6 +57,7 @@ function insertPerms() {
     })
     .then((message) => {
       document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -99,6 +100,7 @@ function updatePerms() {
     })
     .then((message) => {
       document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -142,6 +144,7 @@ function deletePerms(id_permiso) {
     })
     .then((message) => {
       document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -149,12 +152,15 @@ function deletePerms(id_permiso) {
     });
 }
 
-
+///////////////////////////////////////////////////////////////
 // CODIGO MENUS
+///////////////////////////////////////////////////////////////
 
-function getmenuOptions(id_menu) {
+// INSERT MENU
+
+function getInsertMenu() {
   let opciones = { method: "GET" };
-  let parametros = "controlador=Menus&metodo=getMenuOptions";
+  let parametros = "controlador=Menus&metodo=getInsertMenu";
   parametros += "&id_menu=" + id_menu;
   fetch("C_Ajax.php?" + parametros, opciones)
     .then((res) => {
@@ -170,13 +176,48 @@ function getmenuOptions(id_menu) {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
-
-// INSERT MENU
-function getInsertMenu() {}
 function insertMenu() {}
+
 // UPDATE MENU
-function getUpdateMenu() {}
+
+function getUpdateMenu() {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=getUpdateMenu";
+  parametros += "&id_menu=" + id_menu;
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return res.text();
+      }
+    })
+    .then((vista) => {
+      document.getElementById("OpcionesPerms").innerHTML = vista;
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+    });
+}
 function updateMenu() {}
+
 // DELETE MENU
-function getDeleteMenu() {}
+
+function getDeleteMenu() {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=getDeleteMenu";
+  parametros += "&id_menu=" + id_menu;
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return res.text();
+      }
+    })
+    .then((vista) => {
+      document.getElementById("OpcionesPerms").innerHTML = vista;
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+    });
+}
 function deleteMenu() {}
