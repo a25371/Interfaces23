@@ -21,8 +21,52 @@ class C_Menus extends Controlador
         Vista::render('vistas/Menus/V_MenusBD.php',
                        array('MenuData'=>$MenuData));
     }
-    public function getMenuOptions()
+
+    //INSERT MENU
+    public function getInsertMenu($getInsertData = array())
+    {
+        $getInsertData = $this->modelo->getInsertMenu($getInsertData);
+        Vista::render(
+            'vistas/Menus/V_Menus_Insert.php',
+            array('getInsertData' => $getInsertData)
+        );
+    }
+    public function insertMenu()
+    {
+
+    }
+
+    //INSERT SUBMENU
+    public function getInsertSubMenu($getInsertData = array())
+    {
+        $getInsertData = $this->modelo->getInsertSubMenu($getInsertData);
+        Vista::render(
+            'vistas/Menus/V_Menus_InsertSub.php',
+            array('getInsertData' => $getInsertData)
+        );
+    }
+    public function insertSubMenu()
+    {
+
+    }
+
+    //UPDATE MENU
+    public function getUpdateMenu()
     {
         Vista::render('vistas/Menus/V_Menu_Options.php');
+    }
+    public function updateMenu()
+    {
+
+    }
+
+    //DELETE MENU
+    public function getDeleteMenu()
+    {
+
+    }
+    public function deleteMenu()
+    {
+
     }
 }

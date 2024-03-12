@@ -158,7 +158,7 @@ function deletePerms(id_permiso) {
 
 // INSERT MENU
 
-function getInsertMenu() {
+function getInsertMenu(id_menu) {
   let opciones = { method: "GET" };
   let parametros = "controlador=Menus&metodo=getInsertMenu";
   parametros += "&id_menu=" + id_menu;
@@ -177,6 +177,27 @@ function getInsertMenu() {
     });
 }
 function insertMenu() {}
+
+// INSERT SUBMENU 
+function getInsertSubMenu(id_menu) {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=getInsertSubMenu";
+  parametros += "&id_menu=" + id_menu;
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return res.text();
+      }
+    })
+    .then((vista) => {
+      document.getElementById("OpcionesPerms").innerHTML = vista;
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+    });
+}
+function insertSubMenu() {}
 
 // UPDATE MENU
 

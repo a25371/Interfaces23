@@ -6,7 +6,7 @@ $getInsertData = $datos['getInsertData'];
 <form class="formulario" id="formPermsInsert" name="formPermsInsert" onkeydown="return event.key != 'Enter';">
     <div class="crear-column">
         <p>Atencion!</p>
-        <p>Creando un nuevo menu! Menu seleccionado:
+        <p>Creando un nuevo Submenu! Menu Padre:
             <?php echo $getInsertData[0]['TITULO'] . " con ID: " . $getInsertData[0]['ID_MENU']; ?>
         </p>
         <input type="hidden" id="id_Menu" name="id_Menu" value="<?php echo $getInsertData[0]['ID_MENU']; ?>">

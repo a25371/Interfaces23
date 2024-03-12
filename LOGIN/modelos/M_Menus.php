@@ -24,8 +24,32 @@ class M_Menus extends Modelo
         }
         return $menu;
     }
-    public function getMenuOptions(){}
-    public function insertMenu(){
-        
+    
+    // INSERT MENU
+    public function getInsertMenu($id_menu)
+    {
+        extract($id_menu);
+        $SQL = "SELECT ID_MENU, ID_PADRE, TITULO FROM menu WHERE ID_MENU = $id_menu";
+        $GetInsertData = $this->DAO->consultar($SQL);
+        return $GetInsertData;
     }
+    public function insertMenu(){}
+
+    // INSERT SUBMENU
+    public function getInsertSubMenu($id_menu)
+    {
+        extract($id_menu);
+        $SQL = "SELECT ID_MENU, ID_PADRE, TITULO FROM menu WHERE ID_MENU = $id_menu";
+        $GetInsertData = $this->DAO->consultar($SQL);
+        return $GetInsertData;
+    }
+    public function insertSubMenu(){}
+
+    //UPDATE MENU
+    public function getUpdateMenu(){}
+    public function updateMenu(){}
+
+    //DELETE MENU
+    public function getDeleteMenu(){}
+    public function deleteMenu(){}
 }

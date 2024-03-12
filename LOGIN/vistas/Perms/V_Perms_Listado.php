@@ -18,7 +18,7 @@ foreach ($perms as $id_menu => $permisos) {
 
         echo "<div id= 'BotonesMenu'>";
         if (!isset($permisos['hijos'])) {
-                echo '<td><button class="PermsBoton" onclick="getInsertMenu(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/add.png"></button></td>';
+                echo '<td><button class="PermsBoton" onclick="getInsertSubMenu(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/add.png"></button></td>';
         }
         echo '<td><button class="PermsBoton" onclick="getUpdateMenu(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/option.png"></button></td>';
         echo '<td><button class="PermsBoton" onclick="getDeleteMenu(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/eckis.png"></button></td>';
@@ -44,7 +44,7 @@ foreach ($perms as $id_menu => $permisos) {
         }
         // Tenemos hijos?
         if (isset($permisos['hijos'])) {
-                echo '<td><button class="PermsBoton" onclick="getInsertMenu(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/add.png"></button></td>';
+                echo '<td><button class="PermsBoton" onclick="getInsertSubMenu(' . $permisos[0]['id_menu'] . ')"><img class="PermsImagen" src="img/add.png"></button></td>';
                 foreach ($permisos['hijos'] as $id_menu_hijo => $hijos) {
                         // Los hijos tambien son menus
                         echo "<div class='Caja' id= 'CajaMenu'>";
