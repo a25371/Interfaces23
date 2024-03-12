@@ -35,41 +35,40 @@ class M_Menus extends Modelo
     }
     public function insertMenu($insertData = array())
     {
-
+        $MenuID = "";
         $MTitulo = "";
         $MAccion = "";
         $MPrivado = "";
         $MOrden = "";
         extract($insertData);
-        
+        $nuevaID = $this->DAO->consultar("SELECT MAX(ID_MENU) + 1 AS Next_ID_Menu FROM MENU;");
         $orden = $MOrden + 1;
 
         
-        $SQL = "INSERT INTO menu(ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) VALUES (0,$orden,'$MTitulo','$MAccion',$MPrivado);";
-        print($SQL);
+        $SQL = "INSERT INTO menu(ID_MENU, ID_PADRE, ORDEN, TITULO, ACCION, PRIVADO) VALUES ('999','0','$orden','$MTitulo','$MAccion','$MPrivado');";
         $this->DAO->insertar($SQL);
+        echo $SQL;
+        // Creamos los roles para el nuevo menu!!!!!!!
 
-        // // Creamos los roles para el nuevo menu!!!!!!!
+        // Cojemos la id del menu que acabamos de crear
+        $IDMENU = $this->DAO->consultar("SELECT LAST_INSERT_ID() AS ID_MENU;");
 
-        // // Cojemos la id del menu que acabamos de crear
-        // $IDMENU = $this->DAO->consultar("SELECT LAST_INSERT_ID() AS ID_MENU;");
+        //Usando la ID y el Titulo, creamos 3 roles.
+        $SQLPERMS = "INSERT INTO PERMISOS(ID_MENU, PERMISO) VALUES ";
+        $SQLPERMS .= "($IDMENU, 'Ver $MTitulo'), ";
+        $SQLPERMS .= "($IDMENU, 'Crear $MTitulo'), ";
+        $SQLPERMS .= "($IDMENU, 'Borrar $MTitulo');";
+        $this->DAO->insertar($SQLPERMS);
+        //Le damos los 3 roles a admin (Cambiar luego) ---PREGUNTAR
+        $permisos = $this->DAO->consultar("SELECT ID_PERMISO FROM PERMISOS WHERE PERMISO IN ('Ver $MTitulo', 'Crear $MTitulo', 'Borrar $MTitulo');");
 
-        // //Usando la ID y el Titulo, creamos 3 roles.
-        // $SQLPERMS = "INSERT INTO PERMISOS(ID_MENU, PERMISO) VALUES ";
-        // $SQLPERMS .= "($IDMENU, 'Ver $MTitulo'), ";
-        // $SQLPERMS .= "($IDMENU, 'Crear $MTitulo'), ";
-        // $SQLPERMS .= "($IDMENU, 'Borrar $MTitulo');";
-        // $this->DAO->insertar($SQLPERMS);
-        // //Le damos los 3 roles a admin (Cambiar luego) ---PREGUNTAR
-        // $permisos = $this->DAO->consultar("SELECT ID_PERMISO FROM PERMISOS WHERE PERMISO IN ('Ver $MTitulo', 'Crear $MTitulo', 'Borrar $MTitulo');");
-
-        // // Insert roles for permissions in batch
-        // $SQLROLES = "INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES ";
-        // foreach ($permisos as $permiso) {
-        //     $SQLROLES .= "(3, $permiso), ";
-        // }
-        // $SQLROLES = rtrim($SQLROLES, ', '); // Remove trailing comma
-        // $this->DAO->insertar($SQLROLES);
+        // Insert roles for permissions in batch
+        $SQLROLES = "INSERT INTO PERMISOS_ROLES(ID_ROL, ID_PERMISO) VALUES ";
+        foreach ($permisos as $permiso) {
+            $SQLROLES .= "(3, $permiso), ";
+        }
+        $SQLROLES = rtrim($SQLROLES, ', '); // Remove trailing comma
+        $this->DAO->insertar($SQLROLES);
     }
 
     // INSERT SUBMENU

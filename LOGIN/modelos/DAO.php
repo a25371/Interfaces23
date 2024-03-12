@@ -29,13 +29,13 @@
 		}
 
 		public function insertar($SQL){
-            $this->conexion->query($SQL, MYSQLI_USE_RESULT);
-            if($this->conexion->connect_errno){
-                die('Error insertar BD: '.$SQL);
-            }else{
+            if ($this->conexion->query($SQL) === TRUE) {
                 return $this->conexion->insert_id;
+            } else {
+                die('Error insertar BD: ' . $this->conexion->error);
             }
         }
+        
 
         public function actualizar($SQL){
             $this->conexion->query($SQL, MYSQLI_USE_RESULT);

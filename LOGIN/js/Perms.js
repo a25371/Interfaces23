@@ -181,7 +181,6 @@ function insertMenu() {
   let parametros = "controlador=Menus&metodo=insertMenu";
   parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formMenuInsert"))).toString();
   console.log(parametros);
-  
   fetch("C_Ajax.php?" + parametros, opciones)
     .then((res) => {
       if (res.ok) {
