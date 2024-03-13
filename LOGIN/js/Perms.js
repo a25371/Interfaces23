@@ -243,7 +243,7 @@ function insertSubMenu() {
 
 // UPDATE MENU
 
-function getUpdateMenu() {
+function getUpdateMenu(id_menu) {
   let opciones = { method: "GET" };
   let parametros = "controlador=Menus&metodo=getUpdateMenu";
   parametros += "&id_menu=" + id_menu;
@@ -261,11 +261,33 @@ function getUpdateMenu() {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
-function updateMenu() {}
+function updateMenu() {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=updateMenu";
+  parametros += "&" + new URLSearchParams(new FormData(document.getElementById("formMenuUpdate"))).toString();
+  console.log(parametros);
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return "El permiso se ha modificado correctamente."; // Return a success message
+      } else {
+        throw new Error("Error en la modificación de permiso!");
+      }
+    })
+    .then((message) => {
+      document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+      document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
+    });
+}
 
 // DELETE MENU
 
-function getDeleteMenu() {
+function getDeleteMenu(id_menu) {
   let opciones = { method: "GET" };
   let parametros = "controlador=Menus&metodo=getDeleteMenu";
   parametros += "&id_menu=" + id_menu;
@@ -283,4 +305,26 @@ function getDeleteMenu() {
       console.log("Error al realizar la peticion.", err.message);
     });
 }
-function deleteMenu() {}
+function deleteMenu(id_menu) {
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Menus&metodo=deleteMenu";
+  parametros += "&id_menu=" + id_menu;
+  console.log(parametros);
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+        console.log("Respuesta ok");
+        return "El permiso se ha modificado correctamente."; // Return a success message
+      } else {
+        throw new Error("Error en la modificación de permiso!");
+      }
+    })
+    .then((message) => {
+      document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+      document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
+    });
+}

@@ -59,22 +59,36 @@ class C_Menus extends Controlador
     }
 
     //UPDATE MENU
-    public function getUpdateMenu()
+    public function getUpdateMenu($getUpdateData = array())
     {
-        Vista::render('vistas/Menus/V_Menu_Options.php');
+        $getUpdateData = $this->modelo->getUpdateMenu($getUpdateData);
+        Vista::render(
+            'vistas/Menus/V_Menus_Update.php',
+            array('getUpdateData' => $getUpdateData)
+        );
     }
-    public function updateMenu()
+    public function updateMenu($updateData = array())
     {
-
+        $updateData = $this->modelo->updateMenu($updateData);
+        Vista::render(
+            'vistas/Menus/V_Menus_Update.php',
+            array('updateData' => $updateData)
+        );
     }
 
     //DELETE MENU
-    public function getDeleteMenu()
+    public function getDeleteMenu($getDeleteData = array())
     {
-
+        $getDeleteData = $this->modelo->getDeleteMenu($getDeleteData);
+        Vista::render(
+            'vistas/Menus/V_Menus_Delete.php',
+            array('getDeleteData' => $getDeleteData)
+        );
     }
-    public function deleteMenu()
+    public function deleteMenu($id_menu)
     {
-
+        $id_menu = $this->modelo->deleteMenu($id_menu);
+        Vista::render(
+            'vistas/Menus/V_Menus_Delete.php');
     }
 }

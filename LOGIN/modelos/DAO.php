@@ -15,7 +15,7 @@
 		}
 
         public function consultar($SQL){
-			//NO VISUALIZAR NADA AQUI PUES NO RETURN-ARA BIEN
+			//NO VISUALIZAR NADA AQUI PUES NO RETURNARA BIEN
 			$res=$this->conexion->query($SQL,MYSQLI_USE_RESULT); //sin usar buffer mysql
 			$filas=array();
 			if ($this->conexion->errno) {
