@@ -49,9 +49,13 @@ class C_Menus extends Controlador
             array('getInsertData' => $getInsertData)
         );
     }
-    public function insertSubMenu()
+    public function insertSubMenu($insertData = array())
     {
-
+        $insertData = $this->modelo->insertSubMenu($insertData);
+        Vista::render(
+            'vistas/Menus/V_Menus_InsertSub.php',
+            array('insertData' => $insertData)
+        );
     }
 
     //UPDATE MENU

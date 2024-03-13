@@ -1,6 +1,6 @@
 <?php
 $getInsertData = $datos['getInsertData'];
-print_r($getInsertData);
+//print_r($getInsertData);
 ?>
 
 <form class="formulario" id="formMenuInsert" name="formMenuInsert" onkeydown="return event.key != 'Enter';">
@@ -9,6 +9,7 @@ print_r($getInsertData);
         <p>Creando un nuevo menu!</p>
         <input type="hidden" id="MenuID" name="MenuID" value="<?php echo $getInsertData[0]['ID_MENU']; ?>">
         <input type="hidden" id="MOrden" name="MOrden" value="<?php echo $getInsertData[0]['ORDEN']; ?>">
+        <input type="hidden" id="MPadre" name="MPadre" value="<?php echo $getInsertData[0]['ID_PADRE']; ?>">
         <label for="MTitulo">Titulo:</label>
         <input type="text" id="MTitulo" name="MTitulo">
         <label for="MAccion">Accion:</label>
