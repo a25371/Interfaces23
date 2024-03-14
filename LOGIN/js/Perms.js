@@ -192,6 +192,7 @@ function insertMenu() {
     })
     .then((message) => {
       document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -234,6 +235,7 @@ function insertSubMenu() {
     })
     .then((message) => {
       document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
+      buscarPerms();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);

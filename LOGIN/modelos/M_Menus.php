@@ -1,6 +1,8 @@
 <?php
 require_once 'modelos/Modelo.php';
 require_once 'modelos/DAO.php';
+//file_put_contents('array_debug.log', print_r($updateData, true));
+//file_put_contents('SQL_Debug.log', $SQL);
 class M_Menus extends Modelo
 {
     public $DAO;
@@ -136,7 +138,7 @@ class M_Menus extends Modelo
         $MTitulo = "";
         $MAccion = "";
         $MPrivado = "";
-        //file_put_contents('array_debug.log', print_r($updateData, true));
+        
         extract($updateData);
 
         $SQL = "UPDATE menu
@@ -148,7 +150,7 @@ class M_Menus extends Modelo
         WHERE ID_MENU = '$MenuID';";
 
         $this->DAO->actualizar($SQL);
-        //file_put_contents('SQL_Debug.log', $SQL);
+        
         //Posible mejora, cambiar el nombre de los permisos
         // if($MTitulo != ""){}
 
@@ -164,18 +166,17 @@ class M_Menus extends Modelo
     }
     public function deleteMenu($id_menu)
     {
-        //file_put_contents('array_debug.log', print_r($id_menu, true));
         extract($id_menu);
         //Borramos las entradas en permisos_roles con la id_menu
-        $SQL = "DELETE FROM permisos_roles
-                WHERE ID_PERMISO IN (
-                SELECT ID_PERMISO
-                FROM PERMISOS
-                WHERE ID_MENU = '$id_menu') CASCADE CONSTRAINTS;\n";
-        //Borramos los permisos relacionados con el menu
-        $SQL .= "DELETE FROM PERMISOS WHERE ID_MENU = '$id_menu' CASCADE CONSTRAINTS;\n";
-        //Finalmente borramos el menu basado en la ID
-        $SQL .= "DELETE FROM MENU WHERE ID_MENU = '$id_menu' CASCADE CONSTRAINTS;";
+        // $SQL = "DELETE FROM permisos_roles
+        //         WHERE ID_PERMISO IN (
+        //         SELECT ID_PERMISO
+        //         FROM PERMISOS
+        //         WHERE ID_MENU = '$id_menu') CASCADE CONSTRAINTS;\n";
+        // //Borramos los permisos relacionados con el menu
+        // $SQL .= "DELETE FROM PERMISOS WHERE ID_MENU = '$id_menu' CASCADE CONSTRAINTS;\n";
+        // //Finalmente borramos el menu basado en la ID
+        $SQL .= "DELETE FROM MENU WHERE ID_MENU = '$id_menu';";
         file_put_contents('SQL_Debug.log', $SQL);
         $this->DAO->borrar($SQL);
         
