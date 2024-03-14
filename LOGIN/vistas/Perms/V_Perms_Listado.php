@@ -5,6 +5,15 @@ $perms = $datos['perms'];
 //         echo 'PERMISOS USUARIO: <br>';
 //         echo $json;
 
+
+// TODO:
+// If nothing on fields, normal list.
+// If user or rol set, remove ALL BUTTONS and instead put a checkmark.
+// If both user and rol set, give FAT RED ERROR
+        // Further improvement: Fields are auto-complete
+
+// Checkmark specs: Default value read from session, modify on the fly (onclick)
+
 // Ordenamos por 'orden' para que copie el menu.
 usort($perms, function ($a, $b) {
         return $a[0]['orden'] - $b[0]['orden'];
