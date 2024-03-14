@@ -9,7 +9,7 @@ if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != '') {
     //echo "SESION NO INICIADA";
     $msjLogin = '<br><br><br><br><br><p id="avisoLogin">PARA ACCESO COMPLETO, INICIA SESION</p>';
 }
-echo $json = json_encode($_SESSION);
+//echo $json = json_encode($_SESSION);
 // https://es.cooltext.com/
 ?>
 <!DOCTYPE html>

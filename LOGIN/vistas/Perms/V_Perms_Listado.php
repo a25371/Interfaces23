@@ -1,9 +1,14 @@
 <?php
-$perms = $datos['perms'];
+$perms = $datos['perms']['perms'];
+$PUser = $datos['perms']['PUser'];
+$PRol = $datos['perms']['PRol'];
 
-// $json = json_encode($perms);
-//         echo 'PERMISOS USUARIO: <br>';
-//         echo $json;
+// if(empty($PRol)){
+//         echo "PRol is empty";
+//     } else {
+//         echo "PRol is not empty";
+//     }
+
 
 
 // TODO:
@@ -13,6 +18,11 @@ $perms = $datos['perms'];
         // Further improvement: Fields are auto-complete
 
 // Checkmark specs: Default value read from session, modify on the fly (onclick)
+
+
+
+
+
 
 // Ordenamos por 'orden' para que copie el menu.
 usort($perms, function ($a, $b) {

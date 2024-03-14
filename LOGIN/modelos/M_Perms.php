@@ -28,7 +28,7 @@ class M_Perms extends Modelo
         INNER JOIN permisos_usuarios PU ON PER.id_permiso = PU.id_permiso
         INNER JOIN usuarios US ON PU.id_usuario = US.id_usuario
         WHERE US.login = '$login')";
-        echo $SQL.'<br>';
+        //echo $SQL.'<br>';
         $PermsData = $this->DAO->consultar($SQL);
         $perms = array();
         foreach ($PermsData as $permData) {
@@ -42,8 +42,13 @@ class M_Perms extends Modelo
         // echo 'PERMISOS USUARIO: <br>';
         // echo $json;
     }
-    public function buscarPerms()
+    public function buscarPerms($filtros=array())
     {
+        $PUser = "";
+        $PRol = "";
+
+        extract($filtros);
+
         $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
             FROM permisos PER
             INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
@@ -71,9 +76,13 @@ class M_Perms extends Modelo
             }
         }
 
-        // $json = json_encode($perms);
-        // echo $json;
-        return $perms;
+        //$json = json_encode($perms);
+        //echo $json;
+        return array(
+            'perms' => $perms,
+            'PUser' => $PUser,
+            'PRol' => $PRol
+        );
     }
 
     public function getALLPerms(){

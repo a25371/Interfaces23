@@ -18,9 +18,9 @@ class C_Perms extends Controlador
     {
         Vista::render('vistas/Perms/V_Perms.php');
     }
-    public function buscarPerms()
+    public function buscarPerms($filtros=array())
     {
-        $perms = $this->modelo->buscarPerms();
+        $perms = $this->modelo->buscarPerms($filtros);
         Vista::render(
             'vistas/Perms/V_Perms_Listado.php',
             array('perms' => $perms)
