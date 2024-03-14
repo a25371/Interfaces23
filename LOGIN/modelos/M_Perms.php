@@ -12,15 +12,23 @@ class M_Perms extends Modelo
     public function getPermisos()
     {
         $login = $_SESSION['usuario'];
-        //TODO: añadir busqueda de permisos unitarios.
-        $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso
+        //HECHO: añadir busqueda de permisos unitarios.
+        $SQL = "(SELECT PER.id_permiso, PER.id_menu, PER.permiso
         FROM permisos PER
         INNER JOIN permisos_roles PR ON PER.id_permiso = PR.id_permiso
         INNER JOIN roles ROL ON PR.id_rol = ROL.id_rol
         INNER JOIN roles_usuarios ROU ON ROL.id_rol = ROU.id_rol
         INNER JOIN usuarios US ON ROU.id_usuario = US.id_usuario
-        WHERE US.login = '$login';";
-        //echo $SQL.'<br>';
+        WHERE US.login = '$login')
+        
+        UNION
+
+        (SELECT PER.id_permiso, PER.id_menu, PER.permiso
+        FROM permisos PER
+        INNER JOIN permisos_usuarios PU ON PER.id_permiso = PU.id_permiso
+        INNER JOIN usuarios US ON PU.id_usuario = US.id_usuario
+        WHERE US.login = '$login')";
+        echo $SQL.'<br>';
         $PermsData = $this->DAO->consultar($SQL);
         $perms = array();
         foreach ($PermsData as $permData) {
@@ -66,6 +74,12 @@ class M_Perms extends Modelo
         // $json = json_encode($perms);
         // echo $json;
         return $perms;
+    }
+
+    public function getALLPerms(){
+        $SQL = "SELECT * FROM PERMISOS WHERE 1=1";
+        $allPerms = $this->DAO->consultar($SQL);
+        return $allPerms;
     }
     public function getInsertPerms($id_menu)
     {
