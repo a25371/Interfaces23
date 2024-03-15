@@ -5,31 +5,24 @@ $PRol = $datos['perms']['PRol'];
 $permsMod = $datos['perms']['permsMod'];
 
 if (strlen(trim($PRol)) > 0 && strlen(trim($PUser)) > 0) {      //Si ambos tienen texto
-
-} else if (strlen(trim($PUser)) > 0) {                          //Si user tiene texto
-
-} else if (strlen(trim($PRol)) > 0){                            //Si Rol tiene texto
-
-}
+echo "ERROR, NO SE PUEDEN BUSCAR AMBOS FIELDS A LA VEZ!!!!";
+}else{
 
 // TODO:
 // If nothing on fields, normal list. X
-// If user or rol set, remove ALL BUTTONS and instead put a checkmark. X
-        //Set checkmark depending on if perms id are in permsMod or not X
-// If both user and rol set, give FAT RED ERROR
+// If user or rol set, remove ALL BUTTONS and instead put a checkmark.   X
+        //Set checkmark depending on if perms id are in permsMod or not  X
+// If both user and rol set, give FAT RED ERROR                          X
         // Further improvement: Fields are auto-complete
 
-// Checkmark specs: Default value read from session, modify on the fly (onclick)
-        //Update function takes Perm ID, then name of user/rol given
+// Checkmark specs: Default value read from session, modify on the fly (onclick)        X
+        //Update function takes Perm ID, then name of user/rol given                    X
+
 $flatPermsMod = array();
 // reducimos PermsMod (multidimensional) a un array plano
 foreach ($permsMod as $perm) {
     $flatPermsMod[] = $perm['id_permiso'];
 }
-
-// $json = json_encode($flatPermsMod);
-// echo $json;
-// print_r($flatPermsMod);
 
 // Ordenamos por 'orden' para que copie el menu.
 usort($perms, function ($a, $b) {
@@ -163,3 +156,4 @@ foreach ($perms as $id_menu => $permisos) {
 }
 echo "</div>";
 echo "<div class='child' id='OpcionesPerms'></div>";
+}

@@ -333,13 +333,16 @@ function deleteMenu(id_menu) {
       document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
     });
 }
-function updatePermsProl(checkboxStatus, id_permiso, PRol) {
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                  UPDATE PERMS                                                //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function updatePermsProl(checkboxStatus, id_permiso, id_rol) {
   if (checkboxStatus === 1) {
-      // Checkbox is checked
       PStatus = 1;
       console.log('Checkbox is checked');
   } else {
-      // Checkbox is unchecked
       PStatus = 0;
       console.log('Checkbox is unchecked');
   }
@@ -360,15 +363,41 @@ function updatePermsProl(checkboxStatus, id_permiso, PRol) {
       }
     })
     .then((message) => {
-      document.getElementById("OpcionesPerms").innerHTML = message; // Display success message
-      buscarPerms();
+      document.getElementById("OpcionesPerms").innerHTML = message;
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
-      document.getElementById("OpcionesPerms").innerHTML = err.message; // Display failure message
+      document.getElementById("OpcionesPerms").innerHTML = err.message;
     });
 }
-
 function updatePermsPUser(checkboxStatus, id_permiso, id_user){
+  if (checkboxStatus === 1) {
+    PStatus = 1;
+    console.log('Checkbox is checked');
+} else {
+    PStatus = 0;
+    console.log('Checkbox is unchecked');
+}
+// Now you can use PStatus variable as needed
+console.log('PStatus: ' + PStatus);
 
+let opciones = { method: "GET" };
+let parametros = "controlador=Perms&metodo=updatePermsPuser";
+parametros += "&id_permiso=" + id_permiso;
+parametros += "&id_user=" + id_user;
+parametros += "&Pstatus=" + PStatus;
+console.log(parametros);
+fetch("C_Ajax.php?" + parametros, opciones)
+  .then((res) => {
+    if (res.ok) {
+    } else {
+      throw new Error("Error en la modificación de permiso!");
+    }
+  })
+  .then((message) => {
+  })
+  .catch((err) => {
+    console.log("Error al realizar la peticion.", err.message);
+    document.getElementById("OpcionesPerms").innerHTML = err.message;
+  });
 }

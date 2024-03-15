@@ -160,4 +160,51 @@ class M_Perms extends Modelo
         $this->DAO->actualizar($SQL);
         echo "<script>console.log('$SQL');</script>";
     }
+
+    public function updatePermsPUser($modData)
+    {
+        $id_permiso = "";
+        $id_user = "";
+        $Pstatus = "";
+
+        extract($modData);
+        if($Pstatus === "0"){
+            $SQL = "DELETE FROM permisos_usuarios
+                    WHERE ID_PERMISO = '$id_permiso'
+                    AND ID_usuario = (
+                    SELECT ID_usuario 
+                    FROM usuarios 
+                    WHERE login = '$id_user');";
+            $this->DAO->borrar($SQL);
+        }else{
+            $SQL = "INSERT INTO permisos_usuarios (ID_PERMISO, ID_USUARIO) 
+                    SELECT '$id_permiso', ID_USUARIO 
+                    FROM usuarios
+                    WHERE login = '$id_user';";
+            $this->DAO->insertar($SQL);
+        }
+    }
+    public function updatePermsPRol($modData)
+    {
+        $id_permiso = "";
+        $id_rol = "";
+        $Pstatus = "";
+        extract($modData);
+
+        if($Pstatus === "0"){
+            $SQL = "DELETE FROM permisos_roles
+                    WHERE ID_PERMISO = '$id_permiso'
+                    AND ID_ROL = (
+                    SELECT ID_ROL 
+                    FROM roles 
+                    WHERE rol = '$id_rol');";
+            $this->DAO->borrar($SQL);
+        }else{
+            $SQL = "INSERT INTO permisos_roles (ID_PERMISO, ID_ROL) 
+                    SELECT '$id_permiso', ID_ROL 
+                    FROM roles 
+                    WHERE roles = '$id_rol';";
+            $this->DAO->insertar($SQL);
+        }
+    }
 }

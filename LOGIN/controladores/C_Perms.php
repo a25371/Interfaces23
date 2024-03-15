@@ -78,4 +78,10 @@ class C_Perms extends Controlador
         Vista::render(
             'vistas/Perms/V_Perms_Delete.php');
     }
+    public function updatePermsPUser($modData){
+        $result = $this->modelo->updatePermsPUser($modData);
+    }
+    public function updatePermsPRol($modData){
+        $result = $this->modelo->updatePermsPRol($modData);
+    }
 }
