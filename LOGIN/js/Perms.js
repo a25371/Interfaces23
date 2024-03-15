@@ -31,6 +31,7 @@ function getInsertPerms(id_menu) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("FP_titulo").focus;
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);

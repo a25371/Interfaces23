@@ -2,23 +2,34 @@
 $perms = $datos['perms']['perms'];
 $PUser = $datos['perms']['PUser'];
 $PRol = $datos['perms']['PRol'];
+$permsMod = $datos['perms']['permsMod'];
 
-// if (strlen(trim($PRol)) > 0) {
-//         echo "PRol has content other than whitespace";
-// } else {
-//         echo "PRol is empty or not set";
-// }
+if (strlen(trim($PRol)) > 0 && strlen(trim($PUser)) > 0) {      //Si ambos tienen texto
 
+} else if (strlen(trim($PUser)) > 0) {                          //Si user tiene texto
 
+} else if (strlen(trim($PRol)) > 0){                            //Si Rol tiene texto
+
+}
 
 // TODO:
-// If nothing on fields, normal list.
-// If user or rol set, remove ALL BUTTONS and instead put a checkmark.
+// If nothing on fields, normal list. X
+// If user or rol set, remove ALL BUTTONS and instead put a checkmark. X
+        //Set checkmark depending on if perms id are in permsMod or not X
 // If both user and rol set, give FAT RED ERROR
         // Further improvement: Fields are auto-complete
 
 // Checkmark specs: Default value read from session, modify on the fly (onclick)
+        //Update function takes Perm ID, then name of user/rol given
+$flatPermsMod = array();
+// reducimos PermsMod (multidimensional) a un array plano
+foreach ($permsMod as $perm) {
+    $flatPermsMod[] = $perm['id_permiso'];
+}
 
+// $json = json_encode($flatPermsMod);
+// echo $json;
+// print_r($flatPermsMod);
 
 // Ordenamos por 'orden' para que copie el menu.
 usort($perms, function ($a, $b) {
@@ -56,9 +67,21 @@ foreach ($perms as $id_menu => $permisos) {
                 echo "<div class='Caja' id='CajaPadres'>";
                 echo "<p>Permiso: {$permiso['permiso']}</p>";
                 if (strlen(trim($PRol)) > 0) {
-                        echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsProl(' . $permiso['id_permiso'] .", ". $PRol . ')">';
+                        if (in_array($permiso['id_permiso'], $flatPermsMod)) {
+                                // Si el numero esta en PermsMod, check
+                                echo '<input type="checkbox" id="PermsCheckbox" checked onchange="updatePermsProl(' . $permiso['id_permiso']. ", " . $PRol . ')">';
+                        } else {
+                                // Si el numero esta en PermsMod, uncheck
+                                echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsProl(' . $permiso['id_permiso'] . ", " . $PRol . ')">';
+                        }
                 } else if (strlen(trim($PUser)) > 0) {
-                        echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsPUser(' . $permiso['id_permiso'] .", ". $PUser . ')">';
+                        if (in_array($permiso['id_permiso'], $flatPermsMod)) {
+                                // Si el numero esta en PermsMod, check
+                                echo '<input type="checkbox" id="PermsCheckbox" checked onchange="updatePermsPUser(' . $permiso['id_permiso']. ", " . $PUser . ')">';
+                        } else {
+                                // Si el numero esta en PermsMod, uncheck
+                                echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsPUser(' . $permiso['id_permiso'] . ", " . $PUser . ')">';
+                        }
                 } else {
                         echo "<div id='CajaBtn'>"; // Editamos o eliminamos un permiso
                         echo '<td><button class="PermsBoton" onclick="getUpdatePerms(' . $permiso['id_permiso'] . ')"><img class="PermsImagen" src="img/edit.png"></button></td>';
@@ -98,9 +121,21 @@ foreach ($perms as $id_menu => $permisos) {
                                 echo "<div class='Caja' id= 'CajaHijos'>";
                                 echo "<p>Permiso: {$hijo['permiso']}</p>";
                                 if (strlen(trim($PRol)) > 0) {
-                                        echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsProl(' . $hijo['id_permiso'] .", ". $PRol . ')">';
+                                        if (in_array($hijo['id_permiso'], $flatPermsMod)) {
+                                                // Si el numero esta en PermsMod, check
+                                                echo '<input type="checkbox" id="PermsCheckbox" checked onchange="updatePermsProl(' . $hijo['id_permiso']. ", " . $PRol . ')">';
+                                        } else {
+                                                // Si el numero esta en PermsMod, uncheck
+                                                echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsProl(' . $hijo['id_permiso'] . ", " . $PRol . ')">';
+                                        }
                                 } else if (strlen(trim($PUser)) > 0) {
-                                        echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsPUser(' . $hijo['id_permiso'] .", ". $PUser . ')">';
+                                        if (in_array($hijo['id_permiso'], $flatPermsMod)) {
+                                                // Si el numero esta en PermsMod, check
+                                                echo '<input type="checkbox" id="PermsCheckbox" checked onchange="updatePermsPUser(' . $hijo['id_permiso']. ", " . $PUser . ')">';
+                                        } else {
+                                                // Si el numero esta en PermsMod, uncheck
+                                                echo '<input type="checkbox" id="PermsCheckbox" onchange="updatePermsPUser(' . $hijo['id_permiso'] . ", " . $PUser . ')">';
+                                        }
                                 } else {
                                         echo "<div id= 'CajaBtn'>"; // Editamos o eliminamos un permiso
                                         echo '<td><button class="PermsBoton" onclick="getUpdatePerms(' . $hijo['id_permiso'] . ')"><img class="PermsImagen" src="img/edit.png"></button></td>';

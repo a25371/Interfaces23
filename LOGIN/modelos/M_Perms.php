@@ -49,6 +49,23 @@ class M_Perms extends Modelo
 
         extract($filtros);
 
+        $permsMod = array();
+
+        if(strlen(trim($PRol)) > 0){            //ROLES
+            $SQLMod = "SELECT PER.id_permiso
+            FROM permisos PER
+            INNER JOIN permisos_roles PR ON PER.id_permiso = PR.id_permiso
+            INNER JOIN roles RO ON PR.ID_ROL = RO.ID_ROL
+            WHERE RO.ROL = '$PRol';";
+            $permsMod = $this->DAO->consultar($SQLMod);
+        }else if(strlen(trim($PUser)) > 0){     //USUARIOS
+            $SQLMod = "SELECT PER.id_permiso
+            FROM permisos PER
+            INNER JOIN permisos_usuarios PU ON PER.id_permiso = PU.id_permiso
+            INNER JOIN usuarios US ON PU.id_usuario = US.id_usuario
+            WHERE US.login = '$PUser';";
+            $permsMod = $this->DAO->consultar($SQLMod);
+        }
         $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
             FROM permisos PER
             INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
@@ -81,11 +98,12 @@ class M_Perms extends Modelo
         return array(
             'perms' => $perms,
             'PUser' => $PUser,
-            'PRol' => $PRol
+            'PRol' => $PRol,
+            'permsMod' => $permsMod
         );
     }
 
-    public function getALLPerms(){
+    public function getPerms4Mod(){
         $SQL = "SELECT * FROM PERMISOS WHERE 1=1";
         $allPerms = $this->DAO->consultar($SQL);
         return $allPerms;
