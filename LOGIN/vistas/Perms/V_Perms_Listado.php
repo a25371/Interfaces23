@@ -5,8 +5,10 @@ $PRol = $datos['perms']['PRol'];
 $permsMod = $datos['perms']['permsMod'];
 
 if (strlen(trim($PRol)) > 0 && strlen(trim($PUser)) > 0) {      //Si ambos tienen texto
-echo "ERROR, NO SE PUEDEN BUSCAR AMBOS FIELDS A LA VEZ!!!!";
-}else{
+        echo "ERROR, NO SE PUEDEN BUSCAR AMBOS FIELDS A LA VEZ!!!!";
+}else if ((strlen(trim($PRol)) > 0 || strlen(trim($PUser)) > 0) && (empty($permsMod) || count($permsMod) === 0)) {
+        echo "Error, la busqueda ha fallado.";
+} else{
 
 // TODO:
 // If nothing on fields, normal list. X

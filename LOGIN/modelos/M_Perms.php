@@ -203,7 +203,7 @@ class M_Perms extends Modelo
             $SQL = "INSERT INTO permisos_roles (ID_PERMISO, ID_ROL) 
                     SELECT '$id_permiso', ID_ROL 
                     FROM roles 
-                    WHERE roles = '$id_rol';";
+                    WHERE rol = '$id_rol';";
             $this->DAO->insertar($SQL);
         }
     }
