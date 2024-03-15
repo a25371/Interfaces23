@@ -31,7 +31,7 @@ function getInsertPerms(id_menu) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
-      document.getElementById("FP_titulo").focus;
+      document.getElementById("FP_titulo").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -76,6 +76,7 @@ function getUpdatePerms(id_permiso) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("FP_titulo").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -119,6 +120,7 @@ function getDeletePerms(id_permiso) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("button-Dconfirm").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -168,6 +170,7 @@ function getInsertMenu(id_menu) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("MTitulo").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -211,6 +214,7 @@ function getInsertSubMenu(id_menu) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("MTitulo").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -255,6 +259,7 @@ function getUpdateMenu(id_menu) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("MTitulo").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -299,6 +304,7 @@ function getDeleteMenu(id_menu) {
     })
     .then((vista) => {
       document.getElementById("OpcionesPerms").innerHTML = vista;
+      document.getElementById("button-Dconfirm").focus();
     })
     .catch((err) => {
       console.log("Error al realizar la peticion.", err.message);
@@ -313,7 +319,7 @@ function deleteMenu(id_menu) {
     .then((res) => {
       if (res.ok) {
         console.log("Respuesta ok");
-        return "El permiso se ha modificado correctamente."; // Return a success message
+        return "El permiso se ha modificado correctamente.";
       } else {
         throw new Error("Error en la modificación de permiso!");
       }
