@@ -48,23 +48,37 @@ class M_Perms extends Modelo
         $PRol = "";
 
         extract($filtros);
-
+        $check = '9';
         $permsMod = array();
 
         if(strlen(trim($PRol)) > 0){            //ROLES
-            $SQLMod = "SELECT PER.id_permiso
-            FROM permisos PER
-            INNER JOIN permisos_roles PR ON PER.id_permiso = PR.id_permiso
-            INNER JOIN roles RO ON PR.ID_ROL = RO.ID_ROL
-            WHERE RO.ROL = '$PRol';";
+            $SQLcheck = "SELECT * from roles where Rol = '$PRol';";
+            $fieldCheck = $this->DAO->consultar($SQLcheck);
+            if(empty($fieldCheck)){
+                $check = '0';
+            }else{
+                $check = '1';
+                $SQLMod = "SELECT PER.id_permiso
+                FROM permisos PER
+                INNER JOIN permisos_roles PR ON PER.id_permiso = PR.id_permiso
+                INNER JOIN roles RO ON PR.ID_ROL = RO.ID_ROL
+                WHERE RO.ROL = '$PRol';";
             $permsMod = $this->DAO->consultar($SQLMod);
+            }
         }else if(strlen(trim($PUser)) > 0){     //USUARIOS
+            $SQLcheck = "SELECT * FROM USUARIOS WHERE login = '$PUser';";
+            $fieldCheck = $this->DAO->consultar($SQLcheck);
+            if(empty($fieldCheck)){
+                $check = '0';
+            }else{
+                $check = '1';
             $SQLMod = "SELECT PER.id_permiso
             FROM permisos PER
             INNER JOIN permisos_usuarios PU ON PER.id_permiso = PU.id_permiso
             INNER JOIN usuarios US ON PU.id_usuario = US.id_usuario
             WHERE US.login = '$PUser';";
             $permsMod = $this->DAO->consultar($SQLMod);
+            }
         }
         $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
             FROM permisos PER
@@ -99,7 +113,8 @@ class M_Perms extends Modelo
             'perms' => $perms,
             'PUser' => $PUser,
             'PRol' => $PRol,
-            'permsMod' => $permsMod
+            'permsMod' => $permsMod,
+            'check' => $check
         );
     }
 
