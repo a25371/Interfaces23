@@ -51,11 +51,40 @@ class M_Perms extends Modelo
         $check = '9';
         $permsMod = array();
 
-        if(strlen(trim($PRol)) > 0){            //ROLES
+        if((strlen(trim($PUser)) > 0) && (strlen(trim($PRol)) > 0)){  // USUARIO Y ROL -> ASIGNACION ROL
+            $UserCheck = '0';
+            $RolCheck = '0';
+
+            // Comprobamos que el Rol existe
+            $SQLRolCheck = "SELECT * from roles where Rol = '$PRol';";
+            $PRolCheck = $this->DAO->consultar($SQLRolCheck);
+            
+            if(empty($PRolCheck)){$RolCheck = '1'; $check = '6';}
+                //Comprobamos que el Usuario existe
+                $SQLUserCheck = "SELECT * FROM USUARIOS WHERE login = '$PUser';";
+                $PUserCheck = $this->DAO->consultar($SQLUserCheck);
+            if(empty($PUserCheck)){$UserCheck = '1'; $check = '5';}
+
+            if($UserCheck == '0' && $RolCheck == '0'){  // Si ambos checks pasan, comprobamos si el user tiene el rol
+                $SQLCombo = "SELECT US.*
+                FROM usuarios US
+                JOIN roles_usuarios RU ON US.id_usuario = RU.id_usuario
+                JOIN roles RO ON RU.id_rol = RO.id_rol
+                WHERE US.login = '$PUser'
+                AND RO.rol = '$PRol';";
+                $ComboCheck = $this->DAO->consultar($SQLCombo);
+                file_put_contents('array_debug.log', print_r($ComboCheck, true));
+                if(empty($ComboCheck)){     // La consulta esta vacia, el usuario no tiene el rol
+                    $check = '7';
+                }elseif(!empty($ComboCheck)){                      // El usuario tiene el rol
+                    $check = '8';
+                }
+            }
+        }elseif(strlen(trim($PRol)) > 0){            //ROLES
             $SQLcheck = "SELECT * from roles where Rol = '$PRol';";
             $fieldCheck = $this->DAO->consultar($SQLcheck);
             if(empty($fieldCheck)){
-                $check = '0';
+                $check = '6';
             }else{
                 $check = '1';
                 $SQLMod = "SELECT PER.id_permiso
@@ -63,27 +92,28 @@ class M_Perms extends Modelo
                 INNER JOIN permisos_roles PR ON PER.id_permiso = PR.id_permiso
                 INNER JOIN roles RO ON PR.ID_ROL = RO.ID_ROL
                 WHERE RO.ROL = '$PRol';";
-            $permsMod = $this->DAO->consultar($SQLMod);
+                $permsMod = $this->DAO->consultar($SQLMod);
             }
         }else if(strlen(trim($PUser)) > 0){     //USUARIOS
             $SQLcheck = "SELECT * FROM USUARIOS WHERE login = '$PUser';";
             $fieldCheck = $this->DAO->consultar($SQLcheck);
             if(empty($fieldCheck)){
-                $check = '0';
+                $check = '5';
             }else{
                 $check = '1';
-            $SQLMod = "SELECT PER.id_permiso
-            FROM permisos PER
-            INNER JOIN permisos_usuarios PU ON PER.id_permiso = PU.id_permiso
-            INNER JOIN usuarios US ON PU.id_usuario = US.id_usuario
-            WHERE US.login = '$PUser';";
-            $permsMod = $this->DAO->consultar($SQLMod);
+                $SQLMod = "SELECT PER.id_permiso
+                FROM permisos PER
+                INNER JOIN permisos_usuarios PU ON PER.id_permiso = PU.id_permiso
+                INNER JOIN usuarios US ON PU.id_usuario = US.id_usuario
+                WHERE US.login = '$PUser';";
+                $permsMod = $this->DAO->consultar($SQLMod);
             }
         }
+
         $SQL = "SELECT PER.id_permiso, PER.id_menu, PER.permiso, MEN.orden, MEN.id_padre, MEN.titulo
-            FROM permisos PER
-            INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
-            WHERE 1=1;";
+        FROM permisos PER
+        INNER JOIN menu MEN ON PER.id_menu = MEN.id_menu
+        WHERE 1=1;";
         $PermsData = $this->DAO->consultar($SQL);
         $perms = array();
 
@@ -173,7 +203,6 @@ class M_Perms extends Modelo
         SET permiso = '$FP_titulo'
         WHERE id_permiso = $id_permiso;";
         $this->DAO->actualizar($SQL);
-        echo "<script>console.log('$SQL');</script>";
     }
 
     public function updatePermsPUser($modData)
@@ -221,5 +250,31 @@ class M_Perms extends Modelo
                     WHERE rol = '$id_rol';";
             $this->DAO->insertar($SQL);
         }
+    }
+
+    public function insertUserRol($rolData)
+    {
+        $PUser = '';
+        $PRol = '';
+        extract($rolData);
+
+        $SQL = "INSERT INTO ROLES_USUARIOS (ID_ROL, ID_USUARIO)
+        SELECT RO.ID_ROL, US.ID_USUARIO
+        FROM ROLES RO
+        JOIN USUARIOS US ON RO.ROL = '$PRol' AND US.login = '$PUser';";
+        $this->DAO->insertar($SQL);
+    }
+    public function deleteUserRol($rolData)
+    {
+        $PUser = '';
+        $PRol = '';
+        extract($rolData);
+
+        $SQL = "DELETE ROLES_USUARIOS
+        FROM ROLES_USUARIOS
+        JOIN ROLES RO ON ROLES_USUARIOS.ID_ROL = RO.ID_ROL
+        JOIN USUARIOS US ON ROLES_USUARIOS.ID_USUARIO = US.ID_USUARIO
+        WHERE RO.ROL = '$PRol' AND US.login = '$PUser';";
+        $this->DAO->borrar($SQL);
     }
 }

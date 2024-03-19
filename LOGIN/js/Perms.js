@@ -401,3 +401,44 @@ fetch("C_Ajax.php?" + parametros, opciones)
     document.getElementById("OpcionesPerms").innerHTML = err.message;
   });
 }
+function insertUserRol(PUser, PRol){
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Perms&metodo=insertUserRol";
+  parametros += "&PUser=" + PUser;
+  parametros += "&PRol=" + PRol;
+  console.log(parametros);
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+      } else {
+        throw new Error("Error en la modificación de permiso!");
+      }
+    })
+    .then((message) => {
+      buscarPerms();
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+
+    });
+  }
+function deleteUserRol(PUser, PRol){
+  let opciones = { method: "GET" };
+  let parametros = "controlador=Perms&metodo=deleteUserRol";
+  parametros += "&PUser=" + PUser;
+  parametros += "&PRol=" + PRol;
+  console.log(parametros);
+  fetch("C_Ajax.php?" + parametros, opciones)
+    .then((res) => {
+      if (res.ok) {
+      } else {
+        throw new Error("Error en la modificación de permiso!");
+      }
+    })
+    .then((message) => {
+      buscarPerms();
+    })
+    .catch((err) => {
+      console.log("Error al realizar la peticion.", err.message);
+    });
+}

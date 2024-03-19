@@ -84,4 +84,10 @@ class C_Perms extends Controlador
     public function updatePermsPRol($modData){
         $result = $this->modelo->updatePermsPRol($modData);
     }
+    public function insertUserRol($rolData){
+        $result = $this->modelo->insertUserRol($rolData);
+    }
+    public function deleteUserRol($rolData){
+        $result = $this->modelo->deleteUserRol($rolData);
+    }
 }

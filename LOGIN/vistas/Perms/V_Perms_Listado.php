@@ -5,13 +5,32 @@ $PRol = $datos['perms']['PRol'];
 $permsMod = $datos['perms']['permsMod'];
 $check = $datos['perms']['check'];
 
-if (strlen(trim($PRol)) > 0 && strlen(trim($PUser)) > 0) {      //Si ambos tienen texto
-        echo "<p id='avisoPerms'>ERROR, NO SE PUEDEN BUSCAR AMBOS FIELDS A LA VEZ!!!!</p>";
-}else if ($check == '0') {
-        echo "<p id='avisoPerms'>Error, la busqueda ha fallado - Los datos introducidos no existen en la base de datos.</p>";
-}
-else{
 
+switch ($check) {
+        case '0':       // 0-> No tiene uso ahora mismo
+                echo "<p id='avisoPerms'>Error, la busqueda ha fallado - Los datos introducidos no existen en la base de datos.</p>";
+                break;
+        case '5':       // 5-> User no existe
+                echo "<p id='avisoPerms'>Error, usuario no existe</p>";
+                break;
+        case 6:         // 6-> Rol no existe
+                echo "<p id='avisoPerms'>Error, rol no existe</p>";
+                break;
+        case 7:         // 7-> Rol y user existen pero user NO tiene el rol
+                echo '<div>';
+                echo '<p>El usuario '. $PUser .' no tiene el rol '. $PRol .'</p>';
+                echo "<p>Quieres vincularlos?</p>";
+                echo '<button type="button" id="button-Dconfirm" onclick="insertUserRol(' . '\'' . $PUser . '\' , \'' . $PRol . '\')">Vincular</button>';
+                echo '</div>';
+                break;
+        case 8:         // 8-> Rol y user existen Y user SI tiene el rol
+                echo '<div>';
+                echo '<p>El usuario '. $PUser .' tiene el rol '. $PRol .'</p>';
+                echo "<p>Quieres desvincularlos?</p>";
+                echo '<button type="button" id="button-Dcancel" onclick="deleteUserRol(' . '\'' . $PUser . '\' , \'' . $PRol . '\')">Desvincular</button>';
+                echo '</div>';
+                break;
+        default:        // tecnicamente, caso 1
 $flatPermsMod = array();
 // reducimos PermsMod (multidimensional) a un array plano
 foreach ($permsMod as $perm) {
